@@ -5,7 +5,7 @@ A few notes of knowledge about javascript!🥳
 
 学习内容  | 更新时间 | 备注
 ----- | ---- | ---
-[React 入门概述](https://github.com/xwAccount/TypeScript-Study/tree/1-BasicType) |	2023-1-28	
+[React 入门概述](https://github.com/Trumen1219/JavaScript-Study/blob/1-Introduction-to-React/README.md) |	2023-1-28	
 [Hello React](https://github.com/xwAccount/TypeScript-Study/tree/2-compileOption)	| 2023-1-28	
 [创建虚拟DOM的两种方式](https://github.com/xwAccount/TypeScript-Study/blob/3-webpack/README.md) | 2020-12-21 | Webpack整合 Babel整合
 [虚拟DOM与真实DOM](https://github.com/xwAccount/TypeScript-Study/blob/4-OOP/README.md) | 2020-12-21 | class、构造器、继承 supuer、抽象类、封装
