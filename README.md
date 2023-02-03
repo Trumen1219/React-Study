@@ -58,9 +58,9 @@ React是一个将数据渲染为HTML视图的开源JavaScript库
 	• 旧版本 16.8.4 (March 5, 2019)
 	• 新版本 有不一样的会说明
 	
-	1. **react.js**：React核心库。
-	2. **react-dom.js**：提供操作DOM的React扩展库。
-	3. **babel.min.js**：解析JSX语法代码转为JS代码的库。
+	1. react.js：React核心库。
+	2. react-dom.js：提供操作DOM的React扩展库。
+	3. babel.min.js：解析JSX语法代码转为JS代码的库。
 	
 ## 【补充】babel.js的作用
 
@@ -79,7 +79,8 @@ constVDOM= <h1>Hello,React</h1>复制代码
 ```
 
 	2. 作用: 将虚拟DOM元素渲染到页面中的真实容器DOM中显示
-	
+
+
 	3. 参数说明 
 	
 		1. 参数一: 纯js或jsx创建的虚拟dom对象
