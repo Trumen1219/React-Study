@@ -1,6 +1,6 @@
-#1. React 入门概述
+# 1. React 入门概述
 
-##1.1 介绍
+## 1.1 介绍
 
 用于动态构建用户界面的 JavaScript 库(只关注于视图)
 
@@ -10,7 +10,7 @@
 	
 React是一个将数据渲染为HTML视图的开源JavaScript库
 
-##1.2 原生JavaScript的缺点
+## 1.2 原生JavaScript的缺点
 
 	1. 原生JavaScript操作DOM繁琐，效率低（DOM-API操作UI）
 	2. 使用JavaScript直接操作DOM，浏览器会进行大量的重绘重排
@@ -40,20 +40,20 @@ React是一个将数据渲染为HTML视图的开源JavaScript库
 
 组件化：当应用是以多组件的方式实现, 这个应用就是一个组件化的应用
 
-##1.3 React的特点
+## 1.3 React的特点
 
 	1. 采用组件化模式、声明式编码，提高开发效率及组件复用率
 	2. 在 React Native中可以使用React语法进行移动端开发
 	3. 使用虚拟DOM+Diff算法，尽量减少与真实DOM的交互
 	
-##1.4. React高效的原因
+## 1.4. React高效的原因
 
 	1. 使用虚拟(virtual)DOM, 不总是直接操作页面真实DOM。
 	2. DOM Diffing算法, 最小化页面重绘。
 	
-#2. Hello React
+# 2. Hello React
 
-##2.1 相关库介绍
+## 2.1 相关库介绍
 
 	• 旧版本 16.8.4 (March 5, 2019)
 	• 新版本 有不一样的会说明
@@ -62,16 +62,16 @@ React是一个将数据渲染为HTML视图的开源JavaScript库
 	2. **react-dom.js**：提供操作DOM的React扩展库。
 	3. **babel.min.js**：解析JSX语法代码转为JS代码的库。
 	
-##【补充】babel.js的作用
+## 【补充】babel.js的作用
 
 	1. 浏览器不能直接解析JSX代码, 需要babel转译为纯JS的代码才能运行
 	2. 只要用了JSX，都要加上type="text/babel", 声明需要babel来处理
 	
-##2.2 使用JSX创建虚拟DOM
+## 2.2 使用JSX创建虚拟DOM
 ```react
 constVDOM= <h1>Hello,React</h1>复制代码
 ```
-##2.3 渲染虚拟DOM(元素)
+## 2.3 渲染虚拟DOM(元素)
 
 	1. 语法: 
 ```react
@@ -115,22 +115,24 @@ constVDOM= <h1>Hello,React</h1>复制代码
 
 </html>
 ```
-##2.4 页面显示
+## 2.4 页面显示
 
-#3. 创建虚拟DOM的两种方式
-##3.1 纯JS方式(一般不用)
+# 3. 创建虚拟DOM的两种方式
+
+## 3.1 纯JS方式(一般不用)
 <divid="test"></div><scripttype="text/javascript"src="../js/react.development.js"></script><scripttype="text/javascript"src="../js/react-dom.development.js"></script><scripttype="text/javascript"> 
   //1.创建虚拟DOMconstVDOM= React.createElement('h1',{id:'title'},React.createElement('span',{},'Hello,React'))
   //2.渲染虚拟DOM到页面ReactDOM.render(VDOM,document.getElementById('test'))
 </script>复制代码
-##3.2 JSX方式
+
+## 3.2 JSX方式
 	JSX方式就是js创建虚拟DOM的语法糖
 <div id="test"></div>
 <scripttype="text/javascript"src="../js/react.development.js"></script><scripttype="text/javascript"src="../js/react-dom.development.js"></script><scripttype="text/javascript"src="../js/babel.min.js"></script><scripttype="text/babel"> /* 此处一定要写babel *///1.创建虚拟DOMconstVDOM= (  /* 此处一定不要写引号，因为不是字符串 */<h1id="title"><span>Hello,React</span></h1>)
     //2.渲染虚拟DOM到页面ReactDOM.render(VDOM,document.getElementById('test'))
 </script>复制代码
 
-#4. 虚拟DOM与真实DOM
+# 4. 虚拟DOM与真实DOM
 打印输出虚拟DOM和真实DOM进行比较
 constVDOM= (  /* 此处一定不要写引号，因为不是字符串 */<h1id="title"><span>Hello,React</span></h1>)
 //2. 渲染虚拟DOM到页面ReactDOM.render(VDOM,document.getElementById('test'))
@@ -147,8 +149,10 @@ debugger;
 	1. 虚拟DOM本质是Object类型的对象（一般对象）
 	2. 虚拟DOM比较 “轻”，真实DOM比较 “重”，因为虚拟DOM是React内部在用，无需真实DOM上那么多的属性
 	3. 虚拟DOM最终会被React转化为真实DOM，呈现在页面上
-#5. JSX入门
-##5.1 概述
+# 5. JSX入门
+
+## 5.1 概述
+
 	1. 全称: JavaScript XML
 	2. React定义的一种类似于XML的JS扩展语法: JS + XML本质是React.createElement(component, props, ...children)方法的语法糖
 	3. 作用: 用来简化创建虚拟DOM 
@@ -157,7 +161,7 @@ debugger;
 		3. 注意2：它最终产生的就是一个JS对象
 	4. 标签名任意: HTML标签或其它标签
 	5. 标签属性任意: HTML标签属性或其它
-##5.2 基本语法规则
+## 5.2 基本语法规则
 	1. 定义虚拟DOM时，不要写引号。
 	2. 标签中混入JS表达式时要用 { }。
 	3. 样式的类名指定不要用 class，要用 className。（因为class是ES6中类的关键字，所以不让用）
@@ -167,7 +171,7 @@ debugger;
 	7. 标签首字母 
 		1. 若小写字母开头，则将该标签转为html中同名元素，若html中无该标签对应的同名元素，则报错。
 		2. 若大写字母开头，React就去渲染对应的组件，若组件没有定义，则报错。
-##【补充】 区分js表达式与js语句
+## 【补充】 区分js表达式与js语句
 	1. 表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方，下面这些都是表达式：
 		1. a
 		2. a+b
@@ -178,6 +182,6 @@ debugger;
 		1. if(){ }
 		2. for(){ }
 		3. switch( ){case:xxxx}
-##5.3 总结
+## 5.3 总结
 	1. 遇到 < 开头的代码, 以标签的语法解析: html同名标签转换为html同名元素, 其它标签需要特别解析
 	2. 遇到以 { 开头的代码，以JS语法解析: 标签中的js表达式必须用{ }包含
