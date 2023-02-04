@@ -86,7 +86,7 @@ constVDOM= <h1>Hello,React</h1>复制代码
 		1. 参数一: 纯js或jsx创建的虚拟dom对象
 		
 		2. 参数二: 用来包含虚拟DOM元素的真实dom元素对象(一般是一个div)
-```react		
+```javaScript		
 <!DOCTYPE html>
 <html lang="en">
 
