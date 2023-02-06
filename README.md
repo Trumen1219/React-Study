@@ -117,72 +117,136 @@ constVDOM= <h1>Hello,React</h1>复制代码
 </html>
 ```
 ## 2.4 页面显示
+<img width="451" alt="image" src="https://user-images.githubusercontent.com/117837871/216939381-0451d71f-c024-46bf-8fb1-ff25e775c093.png">
 
 # 3. 创建虚拟DOM的两种方式
 
 ## 3.1 纯JS方式(一般不用)
-<divid="test"></div><scripttype="text/javascript"src="../js/react.development.js"></script><scripttype="text/javascript"src="../js/react-dom.development.js"></script><scripttype="text/javascript"> 
-  //1.创建虚拟DOMconstVDOM= React.createElement('h1',{id:'title'},React.createElement('span',{},'Hello,React'))
-  //2.渲染虚拟DOM到页面ReactDOM.render(VDOM,document.getElementById('test'))
-</script>复制代码
+```javaScript
+<div id="test"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+
+<script type="text/javascript" > 
+  //1.创建虚拟DOM
+  const VDOM = React.createElement('h1',{id:'title'},React.createElement('span',{},'Hello,React'))
+  //2.渲染虚拟DOM到页面
+  ReactDOM.render(VDOM,document.getElementById('test'))
+```
 
 ## 3.2 JSX方式
+
 	JSX方式就是js创建虚拟DOM的语法糖
+```javascript
 <div id="test"></div>
-<scripttype="text/javascript"src="../js/react.development.js"></script><scripttype="text/javascript"src="../js/react-dom.development.js"></script><scripttype="text/javascript"src="../js/babel.min.js"></script><scripttype="text/babel"> /* 此处一定要写babel *///1.创建虚拟DOMconstVDOM= (  /* 此处一定不要写引号，因为不是字符串 */<h1id="title"><span>Hello,React</span></h1>)
-    //2.渲染虚拟DOM到页面ReactDOM.render(VDOM,document.getElementById('test'))
-</script>复制代码
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel" > /* 此处一定要写babel */
+    //1.创建虚拟DOM
+    const VDOM = (  /* 此处一定不要写引号，因为不是字符串 */
+        <h1 id="title">
+            <span>Hello,React</span>
+        </h1>
+    )
+    //2.渲染虚拟DOM到页面
+    ReactDOM.render(VDOM,document.getElementById('test'))
+</script>![image](https://user-images.githubusercontent.com/117837871/216940180-3b28dbc4-3910-4119-845f-4f3b124ecc95.png)
+```
 
 # 4. 虚拟DOM与真实DOM
+
 打印输出虚拟DOM和真实DOM进行比较
-constVDOM= (  /* 此处一定不要写引号，因为不是字符串 */<h1id="title"><span>Hello,React</span></h1>)
-//2. 渲染虚拟DOM到页面ReactDOM.render(VDOM,document.getElementById('test'))
+```javascript
+const VDOM = (  /* 此处一定不要写引号，因为不是字符串 */
+    <h1 id="title">
+        <span>Hello,React</span>
+    </h1>
+)
+// 渲染虚拟DOM到页面
+ReactDOM.render(VDOM,document.getElementById('test'))
 constTDOM= document.getElementById('demo')
 console.log('虚拟DOM',VDOM);
 console.log('真实DOM',TDOM);
 debugger;
-复制代码
-
+```
 看看虚拟DOM身上有哪些属性 
+<img width="433" alt="image" src="https://user-images.githubusercontent.com/117837871/216941884-1eb6f1e5-c9f2-429b-b6e0-38214ffd8a06.png">
 
 看看真实DOM身上有哪些属性 
+<img width="448" alt="image" src="https://user-images.githubusercontent.com/117837871/216941911-7af3b347-61b2-4a52-93a3-c98240f22c6d.png">
 
 	1. 虚拟DOM本质是Object类型的对象（一般对象）
+	
 	2. 虚拟DOM比较 “轻”，真实DOM比较 “重”，因为虚拟DOM是React内部在用，无需真实DOM上那么多的属性
+	
 	3. 虚拟DOM最终会被React转化为真实DOM，呈现在页面上
 # 5. JSX入门
 
 ## 5.1 概述
 
 	1. 全称: JavaScript XML
+	
 	2. React定义的一种类似于XML的JS扩展语法: JS + XML本质是React.createElement(component, props, ...children)方法的语法糖
+	
 	3. 作用: 用来简化创建虚拟DOM 
+	
 		1. 写法：var ele = <h1>Hello JSX!</h1>
+		
 		2. 注意1：它不是字符串, 也不是HTML/XML标签
+		
 		3. 注意2：它最终产生的就是一个JS对象
+		
 	4. 标签名任意: HTML标签或其它标签
+	
 	5. 标签属性任意: HTML标签属性或其它
+	
 ## 5.2 基本语法规则
+
 	1. 定义虚拟DOM时，不要写引号。
+	
 	2. 标签中混入JS表达式时要用 { }。
+	
 	3. 样式的类名指定不要用 class，要用 className。（因为class是ES6中类的关键字，所以不让用）
+	
 	4. 内联样式，要用 style={{ key:value }} 的形式去写。
+	
 	5. 只有一个根标签
+	
 	6. 标签必须闭合
+	
 	7. 标签首字母 
+	
 		1. 若小写字母开头，则将该标签转为html中同名元素，若html中无该标签对应的同名元素，则报错。
 		2. 若大写字母开头，React就去渲染对应的组件，若组件没有定义，则报错。
+		
 ## 【补充】 区分js表达式与js语句
+
 	1. 表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方，下面这些都是表达式：
+	
 		1. a
+		
 		2. a+b
+		
 		3. demo(1) // 函数调用表达式
+		
 		4. arr.map()
+		
 		5. function test () {}
+		
 	2. 语句(代码)，下面这些都是语句(代码)：【控制语句，控制代码走向，而不是产生值】
+	
 		1. if(){ }
+		
 		2. for(){ }
+		
 		3. switch( ){case:xxxx}
+		
 ## 5.3 总结
+
 	1. 遇到 < 开头的代码, 以标签的语法解析: html同名标签转换为html同名元素, 其它标签需要特别解析
+	
 	2. 遇到以 { 开头的代码，以JS语法解析: 标签中的js表达式必须用{ }包含
