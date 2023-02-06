@@ -1,5 +1,5 @@
 # React-Study
-A few notes of knowledge about javascript!🥳
+A few notes of knowledge about React!🥳
 
 ## 学习进度
 
