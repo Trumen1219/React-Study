@@ -12,7 +12,6 @@ function MyCompontent(){
 //渲染组件到页面
 ReactDOM.render(<MyCompontent/>,docement.getElementById('test'))
 ```
-![image](https://user-images.githubusercontent.com/117837871/217765589-62d7b555-1c23-4bbc-a7d3-4cd09f163d6e.png)
 ![image](https://user-images.githubusercontent.com/117837871/217765611-333f4b51-104d-478c-a907-c875c5ba30e0.png)
 
     执行了ReactDOM.render(<MyComponent/>.......之后，发生了什么？
