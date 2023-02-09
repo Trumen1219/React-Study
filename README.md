@@ -3,8 +3,8 @@ A few notes of knowledge about React!🥳
 
 ## 学习进度
 
-学习内容   | 备注
------ | ---- | ---
+学习内容  | 备注
+-----  | ---
 [React 入门概述](https://github.com/Trumen1219/JavaScript-Study/blob/1-Introduction-to-React/README.md) |	虚拟DOM与原生DOM - JSX语法 - React基本使用	
 [面向组件编程](https://github.com/Trumen1219/React-Study/tree/2-Component-oriented-programming/README.md)	| 基本理解和使用 - 组件三大核心属性state-props-refs - 事件处理 - 非受控组件 - 受控组件 - 高阶函数
 [创建虚拟DOM的两种方式](https://github.com/xwAccount/TypeScript-Study/blob/3-webpack/README.md) | Webpack整合 Babel整合
