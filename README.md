@@ -12,6 +12,9 @@ function MyCompontent(){
 //渲染组件到页面
 ReactDOM.render(<MyCompontent/>,docement.getElementById('test'))
 ```
+![image](https://user-images.githubusercontent.com/117837871/217765589-62d7b555-1c23-4bbc-a7d3-4cd09f163d6e.png)
+![image](https://user-images.githubusercontent.com/117837871/217765611-333f4b51-104d-478c-a907-c875c5ba30e0.png)
+
     执行了ReactDOM.render(<MyComponent/>.......之后，发生了什么？
 
     React解析组件标签，找到了MyComponent组件。
@@ -50,6 +53,10 @@ class MyCompontent extends React.compontent {
 }
 ReactDOM.render(<MyCompontent/>,document.querySelector('.test'))
 ```
+![image](https://user-images.githubusercontent.com/117837871/217765681-3219dbba-ba4e-430b-89ab-491304411957.png)
+![image](https://user-images.githubusercontent.com/117837871/217765719-0818ccdb-4d40-40c7-84ba-1556b6028719.png)
+
+
     执行了ReactDOM.render(<MyComponent/>.......之后，发生了什么？
 
     React解析组件标签，找到了MyComponent组件。
@@ -117,6 +124,8 @@ class Weather extends React.Copmpontent{
 }
 ReactDOM.render('<Weather/>',docement.querySelector('.test'));
 ```
+![image](https://user-images.githubusercontent.com/117837871/217765896-b98139ee-c913-4141-9b3f-52c687cd07c8.png)
+
 【补充】原生JavaScript绑定事件监听的三种方式
 ```javascript
 <button id="btn1">按钮1</button>
@@ -208,6 +217,8 @@ class Weather extends React.Component {
 //2.渲染组件到页面
 ReactDOM.render(<Weather/>,document.getElementById('test'))
 ```
+![image](https://user-images.githubusercontent.com/117837871/217765963-ceed33e2-9a84-4e6e-b591-ee0873ff1c45.png)
+
 #### 2.2.3 精简代码（实际开发中这样写）
 
 可以不写构造器，类中直接写赋值语句来初始化状态
@@ -283,6 +294,7 @@ class Person extends React.Component{
 // 渲染组件到页面上
 ReactDOM.render(<Person name="yk" age="18" sex="男"/>, document.getElementById('test'))
 ```
+![image](https://user-images.githubusercontent.com/117837871/217766032-9d58d0cf-c11c-44d5-8a96-8d2d1681b4c0.png)
 
 ### 3.4 使用指南
 
