@@ -281,8 +281,12 @@ ReactDOM.render(<Weather/>,document.getElementById('test'))
 // 创建组件 
 class Person extends React.Component{
   render() {
+    //const {name, sex, age} = this.props 
     return (
       <ul>
+        {/* <li>姓名：{name}</li> 
+        <li>性别：{sex}</li> 
+        <li>年龄：{age}</li>  */}
         <li>姓名：{this.props.name}</li> 
         <li>性别：{this.props.sex}</li> 
         <li>年龄：{this.props.age}</li>
@@ -304,7 +308,9 @@ this.props.name
 ### 3.4.2 扩展属性: 将对象的所有属性通过props传递（批量传递标签属性）
 ```javascript
 ReactDOM.render(<Person name="yk" age="18" sex="男"/>, document.getElementById('test'))
+
 const person = {name: 'yk', age: 18, sex: '男'}
+
 ReactDOM.render(<Person { ...person }/>, document.getElementById('test'))
 ```
 
@@ -325,6 +331,7 @@ let arr3 = [...arr1, ...arr2] // [1,3,5,7,9,2,4,6,8,10]
 
 // 3. 在函数中使用
 function sum(...numbers) {
+    //求和！preValue前一个数，currentValue当前数
   return numbers.reduce((preValue, currentValue) => {
     return preValue + currentValue
   })
@@ -339,7 +346,7 @@ let person = {
 
 // console.log(...person); // 报错，展开运算符不能展开对象
 console.log({...person}) // {name: "tom", age: 18}
-
+//babel+react使得可以使用展开运算符，但仅仅实用于标签属性的传递，如下⬇️
 let person2 = { ...person } // 可以拷贝一个对象
 person.name = 'jerry'
 console.log(person2); // {name: "tom", age: 18}
@@ -348,10 +355,10 @@ console.log(person); // {name: "jerry", age: 18}
 // 5. 合并对象
 let person3 = {
   ...person,
-  name: 'jack',
-  address: "地球"
+  name: 'trumen',
+  address: "上海"
 }
-console.log(person3); // {name: "jack", age: 18, address: "地球"}
+console.log(person3); // {name: "trumen", age: 18, address: "上海"}
 ```
 
 ### 3.4.3 对props中的属性值进行类型限制和必要性限制
@@ -363,11 +370,10 @@ Person.propTypes = {
   name: React.PropTypes.string.isRequired,
   age: React.PropTypes.number
 }
-复制代码
-2. 第二种方式（新）：使用prop-types库进限制（需要引入prop-types库）
+
+* 2. 第二种方式（新）：使用prop-types库进限制（需要引入prop-types库）
 <!-- 引入prop-types，用于对组件标签属性进行限制 -->
 <script type="text/javascript" src="../js/prop-types.js"></script>
-复制代码
 //对标签属性进行类型、必要性的限制
 Person.propTypes = {
   name:PropTypes.string.isRequired, // 限制name必传，且为字符串
@@ -375,24 +381,23 @@ Person.propTypes = {
   age:PropTypes.number, // 限制age为数值
   speak:PropTypes.func, // 限制speak为函数
 }
-复制代码
 可以写在类的里面，前面加static关键字
-3.4.4 默认属性值
+#### 3.4.4 默认属性值
 //指定默认标签属性值
 Person.defaultProps = {
   sex:'男', // sex默认值为男
   age:18 //age默认值为18
 }
-复制代码
 可以写在类的里面，前面加static关键字
-3.4.5 组件类的构造函数
+#### 3.4.5 组件类的构造函数
 constructor(props){
   super(props)
   console.log(this.props)//打印所有属性
 }
 
-构造器是否接收props，是否传递给super，取决于：是否希望在构造器中通过this访问props
-3.5 应用
+** 构造器是否接收props，是否传递给super，取决于：是否希望在构造器中通过this访问props **
+
+### 3.5 应用
 需求: 自定义用来显示一个人员信息的组件
 
 姓名必须指定，且为字符串类型；
@@ -432,7 +437,6 @@ class Person extends React.Component{
 
 //渲染组件到页面
 ReactDOM.render(<Person name="jerry"/>,document.getElementById('test1'))
-复制代码
 
 3.6 函数式组件使用props
 //创建组件
