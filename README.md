@@ -360,20 +360,27 @@ let person3 = {
 }
 console.log(person3); // {name: "trumen", age: 18, address: "上海"}
 ```
-
+！！！！
 ### 3.4.3 对props中的属性值进行类型限制和必要性限制
 
 * 1. 第一种方式（React v15.5 开始已弃用）
 
 直接写
+
+```javascript
 Person.propTypes = {
   name: React.PropTypes.string.isRequired,
   age: React.PropTypes.number
 }
+```
 
 * 2. 第二种方式（新）：使用prop-types库进限制（需要引入prop-types库）
+
 <!-- 引入prop-types，用于对组件标签属性进行限制 -->
+
 <script type="text/javascript" src="../js/prop-types.js"></script>
+
+```javascript
 //对标签属性进行类型、必要性的限制
 Person.propTypes = {
   name:PropTypes.string.isRequired, // 限制name必传，且为字符串
@@ -466,3 +473,334 @@ Person.defaultProps = {
 
 //渲染组件到页面
 ReactDOM.render(<Person name="jerry"/>,document.getElementById('test1'))
+4. 组件三大核心属性3: refs与事件处理
+4.1 理解
+组件内的标签可以定义ref属性来标识自己
+4.2 应用
+需求: 自定义组件, 功能说明如下
+
+点击按钮, 提示第一个输入框中的值
+当第2个输入框失去焦点时, 提示这个输入框中的值
+
+
+4.3 编码
+4.3.1 字符串形式的ref（** 新版本不推荐使用了 **）
+1. 定义
+<input ref="input1"/>
+2. 使用
+this.refs.input1
+
+3. 示例
+//创建组件
+class Demo extends React.Component{
+  //展示左侧输入框的数据
+  showData = ()=>{
+    const {input1} = this.refs
+    alert(input1.value)
+  }
+  //展示右侧输入框的数据
+  showData2 = ()=>{
+    const {input2} = this.refs
+    alert(input2.value)
+  }
+  
+  render(){
+    return(
+      <div>
+        <input ref="input1" type="text" placeholder="点击按钮提示数据"/>&nbsp;
+        <button onClick={this.showData}>点我提示左侧的数据</button>&nbsp;
+        <input ref="input2" onBlur={this.showData2} type="text" placeholder="失去焦点提示数据"/>
+      </div>
+    )
+  }
+}
+//渲染组件到页面
+ReactDOM.render(<Demo />,document.getElementById('test'))
+
+4.3.2 回调形式的ref
+1. 定义
+<input ref={(currentNode)=>{this.input1 = currentNode}} />
+
+简写一下
+<input ref={ c => this.input1 = c } />
+
+2. 使用
+this.input1
+
+3. 示例
+//创建组件
+class Demo extends React.Component{
+  //展示左侧输入框的数据
+  showData = ()=>{
+    //从实例自身取
+    const {input1} = this
+    alert(input1.value)
+  }
+  //展示右侧输入框的数据
+  showData2 = ()=>{
+    const {input2} = this
+    alert(input2.value)
+  }
+  
+  render(){
+    return(
+      <div>
+        <input ref={ c => this.input1 = c } type="text" placeholder="点击按钮提示数据"/>&nbsp;
+        <button onClick={this.showData}>点我提示左侧的数据</button>&nbsp;
+        <input onBlur={this.showData2} ref={c => this.input2 = c } type="text" placeholder="失去焦点提示数据"/>&nbsp;
+      </div>
+    )
+  }
+}
+//渲染组件到页面
+ReactDOM.render(<Demo />,document.getElementById('test'))
+
+4. 回调执行次数
+【这里有图片】
+内联的回调，渲染时调用一次，每次更新都会执行两次
+
+类绑定的回调，就在初始渲染时调用一次
+
+影响不大，日常开发基本都用内联，方便一点
+
+4.3.3 createRef创建ref容器
+
+1. 定义
+
+// React.createRef调用后可以返回一个容器
+// 该容器可以存储被ref所标识的节点,该容器是“专人专用”的
+myRef = React.createRef() 
+
+<input ref={this.myRef}/>
+
+2. 使用
+
+this.myRef.current
+
+3. 示例
+//创建组件
+class Demo extends React.Component{
+
+  myRef = React.createRef()
+  myRef2 = React.createRef()
+  //展示左侧输入框的数据
+  showData = ()=>{
+    alert(this.myRef.current.value);
+  }
+  //展示右侧输入框的数据
+  showData2 = ()=>{
+    alert(this.myRef2.current.value);
+  }
+  
+  render(){
+    return(
+      <div>
+        <input ref={this.myRef} type="text" placeholder="点击按钮提示数据"/>&nbsp;
+        <button onClick={this.showData}>点我提示左侧的数据</button>&nbsp;
+        <input onBlur={this.showData2} ref={this.myRef2} type="text" placeholder="失去焦点提示数据"/>&nbsp;
+      </div>
+    )
+  }
+}
+//渲染组件到页面
+ReactDOM.render(<Demo />,document.getElementById('test'))
+
+5. React中的事件处理
+
+通过onXxx属性指定事件处理函数(注意大小写)
+
+React使用的是自定义(合成)事件, 而不是使用的原生DOM事件----为了更好的兼容性
+
+React中的事件是通过事件委托方式处理的(委托给组件最外层的元素) ----为了的高效
+
+通过event.target得到发生事件的DOM元素对象----不要过度使用ref
+
+发生事件的元素是需要操作的元素时，可以避免使用ref
+
+
+//创建组件
+class Demo extends React.Component{
+
+  //创建ref容器
+  myRef = React.createRef()
+  // myRef2 = React.createRef()
+
+  //展示左侧输入框的数据
+  showData = (event)=>{
+    console.log(event.target); // <button>点我提示左侧的数据</button>
+    alert(this.myRef.current.value);
+  }
+
+  //展示右侧输入框的数据
+  showData2 = (event)=>{
+    alert(event.target.value);
+  }
+
+  render(){
+    return(
+      <div>
+        <input ref={this.myRef} type="text" placeholder="点击按钮提示数据"/>&nbsp;
+        <button onClick={this.showData}>点我提示左侧的数据</button>&nbsp;
+        <input onBlur={this.showData2} type="text" placeholder="失去焦点提示数据"/>&nbsp;
+      </div>
+    )
+  }
+}
+//渲染组件到页面
+ReactDOM.render(<Demo />,document.getElementById('test'))
+
+6. 收集表单数据
+
+6.1 理解
+
+包含表单的组件分类
+
+受控组件
+
+非受控组件
+
+6.2 应用
+需求:
+
+定义一个包含表单的组件
+
+输入用户名密码后, 点击登录提示输入信息
+
+6.3 非受控组件
+
+页面中所有输入类DOM的值，都是现用现取的
+
+// 创建组件
+class Login extends React.Component {
+  handleSubmit = (event) => {
+    event.preventDefault() // 阻止表单提交
+    const {username, password} = this
+    alert(`您输入的用户名是 ${username.value}，您输入的密码是：${password.value}`)
+  }
+  render() {
+    return (
+      <form action="https://www.baidu.com/" onSubmit={this.handleSubmit}>
+        用户名：<input ref={c => this.username = c} type="text" name="username" />
+        密码：<input ref={c => this.password = c} type="password" name="password" />
+        <button>登录</button>  
+      </form>
+    )
+  }
+}
+// 渲染组件
+ReactDOM.render(<Login />, document.getElementById('test'))
+
+6.4 受控组件
+页面中输入类的DOM，随着输入的过程，将数据存储在状态state中，需要用的时候在从状态state中取（有点类似Vue中的双向数据绑定）
+// 创建组件
+class Login extends React.Component {
+  // 初始化状态
+  state = {
+    username: '',
+    password: ''
+  }
+  // 保存用户名到状态中
+  saveUsername = (event) => {
+    this.setState({username: event.target.value})
+  }
+  // 保存密码到状态中
+  savePassword = (event) => {
+    this.setState({password: event.target.value})
+  }
+  // 表单提交的回调
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const {username, password} = this.state
+    alert(`您输入的用户名是 ${username}，您输入的密码是：${password}`)
+  }
+
+  render() {
+    return (
+      <form action="https://www.baidu.com/" onSubmit={this.handleSubmit}>
+        用户名：<input onChange={this.saveUsername} type="text" name="username" />
+        密码：<input onChange={this.savePassword} type="password" name="password" />
+        <button>登录</button>  
+      </form>
+    )
+  }
+}
+// 渲染组件
+ReactDOM.render(<Login />, document.getElementById('test'))
+复制代码
+
+7. 高阶函数与函数的柯里化
+7.1 高阶函数
+高阶函数：如果一个函数符合下面2个规范中的任何一个，那该函数就是高阶函数。
+
+若A函数，接收的参数是一个函数，那么A就可以称之为高阶函数。
+若A函数，调用的返回值依然是一个函数，那么A就可以称之为高阶函数。
+
+常见的高阶函数有：Promise、setTimeout、arr.map()等等
+7.2 函数的柯里化
+函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式。
+function sum1(a, b, c){
+  return a + b + c;
+}
+sum1(1, 2, 3)
+
+// 柯里化后
+function sum(a){
+  return(b)=>{
+    return (c)=>{
+      return a+b+c
+    }
+  }
+}
+sum(1)(2)(3)
+复制代码
+7.3 利用高阶函数与函数柯里化简写6.4的代码
+必须传一个函数作为onChange事件的回调
+//创建组件
+class Login extends React.Component{
+  //初始化状态
+  state = {
+    username:'', //用户名
+    password:'' //密码
+  }
+
+  //保存表单数据到状态中 （高阶函数+函数柯里化）
+  saveFormData = (dataType)=>{
+    return (event)=>{
+      this.setState({[dataType]:event.target.value})
+    }
+  }
+
+  //表单提交的回调
+  handleSubmit = (event)=>{
+    event.preventDefault() //阻止表单提交
+    const {username,password} = this.state
+    alert(`你输入的用户名是：${username},你输入的密码是：${password}`)
+  }
+  render(){
+    return(
+      <form onSubmit={this.handleSubmit}>
+        用户名：<input onChange={this.saveFormData('username')} type="text" name="username"/>
+        密码：<input onChange={this.saveFormData('password')} type="password" name="password"/>
+        <button>登录</button>
+      </form>
+    )
+  }
+}
+//渲染组件
+ReactDOM.render(<Login/>,document.getElementById('test'))
+复制代码
+7.4 不用柯里化实现7.3
+//保存表单数据到状态中
+saveFormData = (dataType,event)=>{
+  this.setState({[dataType]:event.target.value})
+}
+
+render(){
+  return(
+	<form onSubmit={this.handleSubmit}>
+	  用户名：<input onChange={ event => this.saveFormData('username',event) } type="text" name="username"/>
+	  密码：<input onChange={ event => this.saveFormData('password',event) } type="password" name="password"/>
+	  <button>登录</button>
+	</form>
+  )
+}
