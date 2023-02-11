@@ -306,6 +306,7 @@ ReactDOM.render(<Person name="yk" age="18" sex="男"/>, document.getElementById(
 this.props.name
 
 ### 3.4.2 扩展属性: 将对象的所有属性通过props传递（批量传递标签属性）
+
 ```javascript
 ReactDOM.render(<Person name="yk" age="18" sex="男"/>, document.getElementById('test'))
 
@@ -360,7 +361,7 @@ let person3 = {
 }
 console.log(person3); // {name: "trumen", age: 18, address: "上海"}
 ```
-！！！！
+
 ### 3.4.3 对props中的属性值进行类型限制和必要性限制
 
 * 1. 第一种方式（React v15.5 开始已弃用）
@@ -388,29 +389,45 @@ Person.propTypes = {
   age:PropTypes.number, // 限制age为数值
   speak:PropTypes.func, // 限制speak为函数
 }
+```
+
 可以写在类的里面，前面加static关键字
+
 #### 3.4.4 默认属性值
+
+```javascript
 //指定默认标签属性值
+
 Person.defaultProps = {
   sex:'男', // sex默认值为男
   age:18 //age默认值为18
 }
+```
+
 可以写在类的里面，前面加static关键字
+
 #### 3.4.5 组件类的构造函数
+
+```javascript
 constructor(props){
   super(props)
   console.log(this.props)//打印所有属性
 }
+```
 
-** 构造器是否接收props，是否传递给super，取决于：是否希望在构造器中通过this访问props **
+* 构造器是否接收props，是否传递给super，取决于：是否希望在构造器中通过this访问props
 
 ### 3.5 应用
+
 需求: 自定义用来显示一个人员信息的组件
 
 姓名必须指定，且为字符串类型；
+
 性别为字符串类型，如果性别没有指定，默认为男
+
 年龄为字符串类型，且为数字类型，默认值为18
 
+```javascript
 //创建组件
 class Person extends React.Component{
 
@@ -444,8 +461,11 @@ class Person extends React.Component{
 
 //渲染组件到页面
 ReactDOM.render(<Person name="jerry"/>,document.getElementById('test1'))
+```
 
-3.6 函数式组件使用props
+### 3.6 函数式组件使用props
+
+```javascript
 //创建组件
 function Person (props){
   const {name,age,sex} = props
@@ -473,24 +493,35 @@ Person.defaultProps = {
 
 //渲染组件到页面
 ReactDOM.render(<Person name="jerry"/>,document.getElementById('test1'))
-4. 组件三大核心属性3: refs与事件处理
-4.1 理解
+```
+
+## 4. 组件三大核心属性3: refs与事件处理
+
+### 4.1 理解
+
 组件内的标签可以定义ref属性来标识自己
-4.2 应用
+
+### 4.2 应用
+
 需求: 自定义组件, 功能说明如下
 
 点击按钮, 提示第一个输入框中的值
+
 当第2个输入框失去焦点时, 提示这个输入框中的值
 
 
-4.3 编码
-4.3.1 字符串形式的ref（** 新版本不推荐使用了 **）
+## 4.3 编码
+
+### 4.3.1 字符串形式的ref（** 新版本不推荐使用了 **）
+
 1. 定义
 <input ref="input1"/>
+
 2. 使用
 this.refs.input1
 
 3. 示例
+```javascript
 //创建组件
 class Demo extends React.Component{
   //展示左侧输入框的数据
@@ -516,8 +547,9 @@ class Demo extends React.Component{
 }
 //渲染组件到页面
 ReactDOM.render(<Demo />,document.getElementById('test'))
+```
 
-4.3.2 回调形式的ref
+### 4.3.2 回调形式的ref
 1. 定义
 <input ref={(currentNode)=>{this.input1 = currentNode}} />
 
@@ -528,6 +560,7 @@ ReactDOM.render(<Demo />,document.getElementById('test'))
 this.input1
 
 3. 示例
+```javascript
 //创建组件
 class Demo extends React.Component{
   //展示左侧输入框的数据
@@ -554,7 +587,7 @@ class Demo extends React.Component{
 }
 //渲染组件到页面
 ReactDOM.render(<Demo />,document.getElementById('test'))
-
+```
 4. 回调执行次数
 【这里有图片】
 内联的回调，渲染时调用一次，每次更新都会执行两次
@@ -563,21 +596,22 @@ ReactDOM.render(<Demo />,document.getElementById('test'))
 
 影响不大，日常开发基本都用内联，方便一点
 
-4.3.3 createRef创建ref容器
+### 4.3.3 createRef创建ref容器
 
 1. 定义
-
+```javascript
 // React.createRef调用后可以返回一个容器
 // 该容器可以存储被ref所标识的节点,该容器是“专人专用”的
 myRef = React.createRef() 
 
 <input ref={this.myRef}/>
-
+```
 2. 使用
 
 this.myRef.current
 
 3. 示例
+```javascript
 //创建组件
 class Demo extends React.Component{
 
@@ -604,8 +638,9 @@ class Demo extends React.Component{
 }
 //渲染组件到页面
 ReactDOM.render(<Demo />,document.getElementById('test'))
+```
 
-5. React中的事件处理
+## 5. React中的事件处理
 
 通过onXxx属性指定事件处理函数(注意大小写)
 
@@ -617,7 +652,7 @@ React中的事件是通过事件委托方式处理的(委托给组件最外层�
 
 发生事件的元素是需要操作的元素时，可以避免使用ref
 
-
+```javascript
 //创建组件
 class Demo extends React.Component{
 
@@ -648,10 +683,10 @@ class Demo extends React.Component{
 }
 //渲染组件到页面
 ReactDOM.render(<Demo />,document.getElementById('test'))
+```
+## 6. 收集表单数据
 
-6. 收集表单数据
-
-6.1 理解
+### 6.1 理解
 
 包含表单的组件分类
 
@@ -659,17 +694,18 @@ ReactDOM.render(<Demo />,document.getElementById('test'))
 
 非受控组件
 
-6.2 应用
+### 6.2 应用
 需求:
 
 定义一个包含表单的组件
 
 输入用户名密码后, 点击登录提示输入信息
 
-6.3 非受控组件
+### 6.3 非受控组件
 
 页面中所有输入类DOM的值，都是现用现取的
 
+```javascript
 // 创建组件
 class Login extends React.Component {
   handleSubmit = (event) => {
@@ -689,9 +725,11 @@ class Login extends React.Component {
 }
 // 渲染组件
 ReactDOM.render(<Login />, document.getElementById('test'))
+```
 
-6.4 受控组件
+## 6.4 受控组件
 页面中输入类的DOM，随着输入的过程，将数据存储在状态state中，需要用的时候在从状态state中取（有点类似Vue中的双向数据绑定）
+```javascript
 // 创建组件
 class Login extends React.Component {
   // 初始化状态
@@ -726,18 +764,19 @@ class Login extends React.Component {
 }
 // 渲染组件
 ReactDOM.render(<Login />, document.getElementById('test'))
-复制代码
+```
 
-7. 高阶函数与函数的柯里化
-7.1 高阶函数
+## 7. 高阶函数与函数的柯里化
+### 7.1 高阶函数
 高阶函数：如果一个函数符合下面2个规范中的任何一个，那该函数就是高阶函数。
 
 若A函数，接收的参数是一个函数，那么A就可以称之为高阶函数。
 若A函数，调用的返回值依然是一个函数，那么A就可以称之为高阶函数。
 
 常见的高阶函数有：Promise、setTimeout、arr.map()等等
-7.2 函数的柯里化
+### 7.2 函数的柯里化
 函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式。
+```javascript
 function sum1(a, b, c){
   return a + b + c;
 }
@@ -752,9 +791,10 @@ function sum(a){
   }
 }
 sum(1)(2)(3)
-复制代码
-7.3 利用高阶函数与函数柯里化简写6.4的代码
+```
+### 7.3 利用高阶函数与函数柯里化简写6.4的代码
 必须传一个函数作为onChange事件的回调
+```javascript
 //创建组件
 class Login extends React.Component{
   //初始化状态
@@ -788,8 +828,10 @@ class Login extends React.Component{
 }
 //渲染组件
 ReactDOM.render(<Login/>,document.getElementById('test'))
-复制代码
-7.4 不用柯里化实现7.3
+```
+
+### 7.4 不用柯里化实现7.3
+```javascript
 //保存表单数据到状态中
 saveFormData = (dataType,event)=>{
   this.setState({[dataType]:event.target.value})
@@ -804,3 +846,4 @@ render(){
 	</form>
   )
 }
+```
