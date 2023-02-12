@@ -613,6 +613,7 @@ ReactDOM.render(<Demo />,document.getElementById('test'))
 ### 4.3.3 createRef创建ref容器
 
 1. 定义
+
 ```javascript
 // React.createRef调用后可以返回一个容器
 // 该容器可以存储被ref所标识的节点,该容器是“专人专用”的
@@ -625,6 +626,7 @@ myRef = React.createRef()
 this.myRef.current
 
 3. 示例
+
 ```javascript
 //创建组件
 class Demo extends React.Component{
@@ -698,6 +700,7 @@ class Demo extends React.Component{
 //渲染组件到页面
 ReactDOM.render(<Demo />,document.getElementById('test'))
 ```
+
 ## 6. 收集表单数据
 
 ### 6.1 理解
@@ -709,6 +712,7 @@ ReactDOM.render(<Demo />,document.getElementById('test'))
 非受控组件
 
 ### 6.2 应用
+
 需求:
 
 定义一个包含表单的组件
@@ -742,7 +746,9 @@ ReactDOM.render(<Login />, document.getElementById('test'))
 ```
 
 ## 6.4 受控组件
+
 页面中输入类的DOM，随着输入的过程，将数据存储在状态state中，需要用的时候在从状态state中取（有点类似Vue中的双向数据绑定）
+
 ```javascript
 // 创建组件
 class Login extends React.Component {
@@ -781,15 +787,21 @@ ReactDOM.render(<Login />, document.getElementById('test'))
 ```
 
 ## 7. 高阶函数与函数的柯里化
+
 ### 7.1 高阶函数
+
 高阶函数：如果一个函数符合下面2个规范中的任何一个，那该函数就是高阶函数。
 
 若A函数，接收的参数是一个函数，那么A就可以称之为高阶函数。
+
 若A函数，调用的返回值依然是一个函数，那么A就可以称之为高阶函数。
 
 常见的高阶函数有：Promise、setTimeout、arr.map()等等
+
 ### 7.2 函数的柯里化
+
 函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式。
+
 ```javascript
 function sum1(a, b, c){
   return a + b + c;
@@ -806,8 +818,11 @@ function sum(a){
 }
 sum(1)(2)(3)
 ```
+
 ### 7.3 利用高阶函数与函数柯里化简写6.4的代码
+
 必须传一个函数作为onChange事件的回调
+
 ```javascript
 //创建组件
 class Login extends React.Component{
@@ -845,6 +860,7 @@ ReactDOM.render(<Login/>,document.getElementById('test'))
 ```
 
 ### 7.4 不用柯里化实现7.3
+
 ```javascript
 //保存表单数据到状态中
 saveFormData = (dataType,event)=>{
