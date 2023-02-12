@@ -600,7 +600,10 @@ ReactDOM.render(<Demo />,document.getElementById('test'))
 
 4. 回调执行次数
 
-【这里有图片】
+![image](https://user-images.githubusercontent.com/117837871/218298374-9f3931c3-ea0d-45a5-80c2-cd4b15e1a51f.png)
+
+![image](https://user-images.githubusercontent.com/117837871/218298384-a6b30e7b-a208-408e-b0ca-27d979d71fe6.png)
+
 内联的回调，渲染时调用一次，每次更新都会执行两次
 
 类绑定的回调，就在初始渲染时调用一次
