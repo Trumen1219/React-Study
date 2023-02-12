@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="test"></div>
+</body>
+<script type="text/babel">
+    class Demo extends React.Component {
+        showData = () => {
+            const { input1 } = this.refs
+            alert(input1.value)
+        }
+        showData2 = () => {
+            const { input2 } = this.refs
+            alert(input2.value)
+        }
+        render() {
+            return (
+                <div>
+                    <input ref={c => this.input1 = c} type="text" />
+                    <button onClick={this.showData}>点击</button>
+                    <input ref={c => this.input2 = c} onBlur={this.showData2} type="text" />
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Demo />, document.querySelector('.test'))
+</script>
+
+</html>
