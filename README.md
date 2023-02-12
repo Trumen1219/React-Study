@@ -425,7 +425,7 @@ constructor(props){
 
 性别为字符串类型，如果性别没有指定，默认为男
 
-年龄为字符串类型，且为数字类型，默认值为18
+年龄为数字类型，默认值为18
 
 ```javascript
 //创建组件
@@ -550,16 +550,25 @@ ReactDOM.render(<Demo />,document.getElementById('test'))
 ```
 
 ### 4.3.2 回调形式的ref
+
 1. 定义
+
+```javascript
 <input ref={(currentNode)=>{this.input1 = currentNode}} />
+```
 
 简写一下
+
+```javascript
 <input ref={ c => this.input1 = c } />
+```
 
 2. 使用
+
 this.input1
 
 3. 示例
+
 ```javascript
 //创建组件
 class Demo extends React.Component{
@@ -588,7 +597,9 @@ class Demo extends React.Component{
 //渲染组件到页面
 ReactDOM.render(<Demo />,document.getElementById('test'))
 ```
+
 4. 回调执行次数
+
 【这里有图片】
 内联的回调，渲染时调用一次，每次更新都会执行两次
 
