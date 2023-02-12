@@ -701,6 +701,7 @@ class Demo extends React.Component{
 ReactDOM.render(<Demo />,document.getElementById('test'))
 ```
 
+
 ## 6. 收集表单数据
 
 ### 6.1 理解
