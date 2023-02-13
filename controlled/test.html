@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="test"></div>
+</body>
+<script type="text/babel">
+    class Demo extends React.Component {
+        handlerSubmit=(event)=>{
+            event.preventDefault()
+            const {username,password} = this
+            alert(`用户名是：${username.value} 密码是：${password.value}`)
+        }
+        render() {
+            return (
+                <form action="www.homestyler.com" onSubmit={this.handlerSubmit}>
+                    <input ref={c => this.username = c} type="text" name="username"/>
+                    <input ref={c => this.password = c} type="password" name="password"/>
+                    <button>登陆</button>
+                </form>
+            )
+        }
+    }
+    ReactDOM.render(<Demo />,document.querySelector('.test'))
+</script>
+
+</html>
