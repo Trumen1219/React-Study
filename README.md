@@ -121,7 +121,7 @@ class Count extends React.Component{
 ReactDOM.render(<Count/>, document.getElementById('test'))
 复制代码
 ![image](https://user-images.githubusercontent.com/117837871/218704847-ae672973-44d9-44c1-b65c-45a8751596e1.png)
-
+https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7505801778224e368ee9f40edf2d2642~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image
 
 1.3.2 更新阶段
 【第一种情况】父组件重新render触发
