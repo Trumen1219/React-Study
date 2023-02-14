@@ -1,17 +1,25 @@
-1. 组件的生命周期
-1.1 理解
+# 组件的生命周期 - 虚拟DOM - DOM Diffing算法
+
+## 1. 组件的生命周期
+
+### 1.1 理解
 
 组件从创建到死亡它会经历一些特定的阶段。
+
 React组件中包含一系列勾子函数(生命周期回调函数), 会在特定的时刻调用。
+
 我们在定义组件时，会在特定的生命周期回调函数中，做特定的工作。
 
-1.2 引入案例
+### 1.2 引入案例
+
 需求:定义组件实现以下功能：
 
 让指定的文本做显示 / 隐藏的渐变动画
-从完全可见，到彻底消失，耗时2S
-点击“不活了”按钮从界面中卸载组件
 
+从完全可见，到彻底消失，耗时2S
+
+点击“不活了”按钮从界面中卸载组件
+```javascript
 //创建组件
 //生命周期回调函数 <=> 生命周期钩子函数 <=> 生命周期函数 <=> 生命周期钩子
 class Life extends React.Component{
@@ -58,8 +66,9 @@ class Life extends React.Component{
 }
 //渲染组件
 ReactDOM.render(<Life/>,document.getElementById('test'))
-复制代码
-![image](https://user-images.githubusercontent.com/117837871/218704710-e4ddac09-9369-447d-a860-4ed2c74ab37f.png)
+```
+![image](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc4090cc0a5f44248e534fec82ab82d2~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image)
+
 https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc4090cc0a5f44248e534fec82ab82d2~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image
 
 1.3 生命周期的三个阶段（旧）
