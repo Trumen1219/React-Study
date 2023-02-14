@@ -60,7 +60,7 @@ class Life extends React.Component{
 ReactDOM.render(<Life/>,document.getElementById('test'))
 复制代码
 ![image](https://user-images.githubusercontent.com/117837871/218704710-e4ddac09-9369-447d-a860-4ed2c74ab37f.png)
-
+https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc4090cc0a5f44248e534fec82ab82d2~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image
 
 1.3 生命周期的三个阶段（旧）
 
