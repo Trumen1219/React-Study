@@ -16,7 +16,7 @@ React是一个将数据渲染为HTML视图的开源JavaScript库
 	2. 使用JavaScript直接操作DOM，浏览器会进行大量的重绘重排
 	3. 原生JavaScript没有组件化编码方案，代码复用率很低
 	
-##【补充】浏览器重绘重排
+【补充】浏览器重绘重排
 
 浏览器重绘(repaint)重排(reflow)与优化[浏览器机制]
 
