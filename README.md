@@ -73,22 +73,27 @@ ReactDOM.render(<Life/>,document.getElementById('test'))
 
 https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc4090cc0a5f44248e534fec82ab82d2~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image
 
-1.3 生命周期的三个阶段（旧）
+### 1.3 生命周期的三个阶段（旧）
 
 ![image](https://user-images.githubusercontent.com/117837871/218704757-f4bd7825-9d5d-4eb6-89fe-2c33532ac4aa.png)
 
 v16.8.4
 
-1.3.1 初始化阶段
-由ReactDOM.render()触发---初次渲染
+#### 1.3.1 初始化阶段
 
-constructor() —— 类组件中的构造函数
-componentWillMount() —— 组件将要挂载 【即将废弃】
-render()  —— 挂载组件
-componentDidMount() —— 组件挂载完成 比较常用：
+由*ReactDOM.render()*触发---初次渲染
+
+1.*constructor()*—— 类组件中的构造函数
+
+2.*componentWillMount()* —— 组件将要挂载 【即将废弃】
+
+3.*render()*  —— 挂载组件
+
+4.*componentDidMount()* —— 组件挂载完成 比较常用：
+
 一般在这个钩子中做一些初始化的事，例如：开启定时器、发送网络请求、订阅消息
 
-``javascript
+```javascript
 class Count extends React.Component{
 
   // 构造器
@@ -132,10 +137,12 @@ class Count extends React.Component{
 }
 ReactDOM.render(<Count/>, document.getElementById('test'))
 ```
+
 ![image](https://user-images.githubusercontent.com/117837871/218704847-ae672973-44d9-44c1-b65c-45a8751596e1.png)
 https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7505801778224e368ee9f40edf2d2642~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image
 
-1.3.2 更新阶段
+#### 1.3.2 更新阶段
+
 【第一种情况】父组件重新render触发
 
 componentWillReceiveProps() —— 接收属性参数（非首次）【即将废弃】
@@ -152,12 +159,12 @@ componentWillUpdate() ——组件将要更新 【即将废弃】
 render() —— 组件更新
 componentDidUpdate() —— 组件完成更新
 
-1.3.3 卸载组件
+#### 1.3.3 卸载组件
 由ReactDOM.unmountComponentAtNode()触发
 
 componentWillUnmount() —— 组件即将卸载
 
-1.4 生命周期的三个阶段（新）
+### 1.4 生命周期的三个阶段（新）
 
 ![image](https://user-images.githubusercontent.com/117837871/218704912-83a52735-9acc-42e0-9cc6-83e6d752122f.png)
 
@@ -185,13 +192,13 @@ componentDidUpdate(prevProps, prevState, snapshotValue) —— 组件完成更�
 
 componentWillUnmount() —— 组件即将卸载
 
-1.5 重要的勾子
+### 1.5 重要的勾子
 
 render：初始化渲染或更新渲染调用
 componentDidMount：开启监听, 发送ajax请求
 componentWillUnmount：做一些收尾工作, 如: 清理定时器
 
-1.6 即将废弃的勾子
+### 1.6 即将废弃的勾子
 
 componentWillMount
 componentWillReceiveProps
