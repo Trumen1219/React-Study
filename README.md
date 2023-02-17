@@ -143,26 +143,33 @@ https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7505801778224e368ee9f40edf2d26
 
 #### 1.3.2 更新阶段
 
-【第一种情况】父组件重新render触发
+【第一种情况】父组件重新*render*触发
 
-componentWillReceiveProps() —— 接收属性参数（非首次）【即将废弃】
+*componentWillReceiveProps()* —— 接收属性参数（非首次）【即将废弃】
+
+然后调用下面的钩子函数*
+
+【第二种情况】由组件内部*this.setSate()*
+
+*shouldComponentUpdate()* —— 组件是否应该被更新（默认返回true）
 
 然后调用下面的钩子函数
-【第二种情况】由组件内部this.setSate()
 
-shouldComponentUpdate() —— 组件是否应该被更新（默认返回true）
+【第三种情况】强制更新 *forceUpdate()*
 
-然后调用下面的钩子函数
-【第三种情况】强制更新 forceUpdate()
+*componentWillUpdate()* ——组件将要更新 【即将废弃】
 
-componentWillUpdate() ——组件将要更新 【即将废弃】
-render() —— 组件更新
-componentDidUpdate() —— 组件完成更新
+*render()* —— 组件更新
+
+*componentDidUpdate()* —— 组件完成更新
+
 
 #### 1.3.3 卸载组件
-由ReactDOM.unmountComponentAtNode()触发
 
-componentWillUnmount() —— 组件即将卸载
+由*ReactDOM.unmountComponentAtNode()*触发
+
+*componentWillUnmount()* —— 组件即将卸载
+
 
 ### 1.4 生命周期的三个阶段（新）
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="test"></div>
+</body>
+<script type="text/babel">
+    class Demo extends React.Component {
+        //构造器
+        constructor(props) {
+            alert('constructor')
+            console.log('constructor');
+            super(props)
+            //初始化状态
+            this.state = { count: 0 }
+        }
+        //state = { count:0 }
+
+        //组件将要挂载的钩子【即将废弃】
+        componentWillMount() {
+            alert('componentWillMount')
+            console.log('componentWillMount');
+        }
+        add = () => {
+            let { count } = this.state
+            this.setState({ count: count + 1 })
+        }
+        //挂载组件
+        render() {
+            alert('render')
+            console.log('render');
+            return (
+                <div>
+                    <h2>{this.state.count}</h2>
+                    <button onClick={this.add}></button>
+                </div>
+            )
+        }
+        //组件挂载完毕的钩子
+        componentDidMount() {
+            console.log('componentDidMount');
+        }
+    }
+    ReactDOM.render(<Demo />, document.querySelector('.test'))
+</script>
+
+</html>
