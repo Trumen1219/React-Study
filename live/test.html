@@ -12,7 +12,37 @@
 </head>
 
 <body>
-
+    <div class="test"></div>
 </body>
+<script type="text/babel">
+    class Demo extends React.Component {
+        state = { opacity: 1 }
+        death=()=>{
+            ReactDOM.unmountComponentAtNode(document.querySelector('.test'))
+        }
+        componentDidMount() {
+            console.log('componentDidMount');
+            this.timer = setInterval(() => {
+                let { opacity } = this.state
+                opacity -= 0.1
+                if (opacity <= 0) opacity = 1
+                this.setState({opacity})
+            }, 200)
+        }
+        componentWillUnmount(){
+            clearInterval(this.timer)
+        }
+        render() {
+            return (
+                <div>
+                    <h2 style={{opacity:this.state.opacity}}>渐变</h2>
+                    <button onClick={this.death}>消失</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Demo />, document.querySelector('.test'))
+
+</script>
 
 </html>
