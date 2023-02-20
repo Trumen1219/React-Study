@@ -180,10 +180,10 @@ v17.0.1
 1. 初始化阶段
 由ReactDOM.render()触发 —— 初次渲染
 
-constructor() —— 类组件中的构造函数
-static getDerivedStateFromProps(props, state) 从props得到一个派生的状态【新增】
-render() —— 挂载组件
-componentDidMount() —— 组件挂载完成 比较==常用==
+    constructor() —— 类组件中的构造函数
+    static getDerivedStateFromProps(props, state) 从props得到一个派生的状态【新增】
+    render() —— 挂载组件
+    componentDidMount() —— 组件挂载完成 比较==常用==
 
 2. 更新阶段
 由组件内部this.setSate()或父组件重新render触发或强制更新forceUpdate()
