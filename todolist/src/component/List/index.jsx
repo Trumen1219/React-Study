@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import Item from '../Item'
+import Item from '../Item/index'
 import './index.css'
 
 export default class List extends Component {
     render() {
+        const { todos } = this.props
         return (
             <ul className="todoList">
-                <Item></Item>
+                {
+                    todos.map((todo) => {
+                        return <Item key={todo.id} {...todo} />
+                    })
+                }
             </ul>
         )
     }
