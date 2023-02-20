@@ -203,11 +203,11 @@ v17.0.1
 
 * **componentDidUpdate(prevProps, prevState, snapshotValue)** —— 组件完成更新
 
-###### 3. 卸载组件
+##### 3. 卸载组件
 
-由**ReactDOM.unmountComponentAtNode()**触发
+* 由ReactDOM.unmountComponentAtNode()触发
 
-**componentWillUnmount()** —— 组件即将卸载
+* **componentWillUnmount()** —— 组件即将卸载
 
 ### 1.5 重要的勾子
 
