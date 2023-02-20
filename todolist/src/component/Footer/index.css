@@ -1,0 +1,17 @@
+.todoFooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    height: 40px;
+    border: 1px solid #656363;
+}
+.Wrapper{
+    width: 200px;
+}
+.allClear{
+    background-color: rgb(177, 13, 13);
+    width: 120px;
+    height: 30px;
+    float: right;
+}

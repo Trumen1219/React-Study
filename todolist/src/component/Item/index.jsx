@@ -7,7 +7,7 @@ export default class Item extends Component {
             <li className="todoItem">
                 <input type="checkbox" />
                 <span>xxxxxxxx</span>
-                <button>删除</button>
+                <button className="clear">删除</button>
             </li>
         )
     }
