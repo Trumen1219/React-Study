@@ -155,9 +155,9 @@ https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7505801778224e368ee9f40edf2d26
 
 然后调用下面的钩子函数
 
-【第三种情况】强制更新 *forceUpdate()*
+【第三种情况】强制更新 * forceUpdate() *
 
-*componentWillUpdate()* ——组件将要更新 【即将废弃】
+* componentWillUpdate() * ——组件将要更新 【即将废弃】
 
 *render()* —— 组件更新
 
@@ -180,8 +180,8 @@ v17.0.1
 1. 初始化阶段
 由ReactDOM.render()触发 —— 初次渲染
 
-    constructor() —— 类组件中的构造函数
-    static getDerivedStateFromProps(props, state) 从props得到一个派生的状态【新增】
+constructor() —— 类组件中的构造函数
+static getDerivedStateFromProps(props, state) 从props得到一个派生的状态【新增】
     render() —— 挂载组件
     componentDidMount() —— 组件挂载完成 比较==常用==
 
