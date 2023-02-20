@@ -20,15 +20,17 @@
 </body>
 
 </html>
-复制代码
+
 4. 静态页面搭建
+
 index.js
 import React from "react";
 import ReactDDOM from "react-dom";
 import App from "./App";
 
 ReactDDOM.render(<App />, document.getElementById("root"));
-复制代码
+
+
 App.jsx
 import React, { Component } from "react";
 import Header from "./components/Header";
@@ -49,7 +51,8 @@ export default class App extends Component {
     );
   }
 }
-复制代码
+
+
 App.css
 /*base*/
 body {
@@ -94,7 +97,8 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
-复制代码
+
+
 Header/index.js
 import React, { Component } from 'react'
 import './index.css'
@@ -109,7 +113,8 @@ export default class Header extends Component {
   }
 }
 
-复制代码
+
+
 Header/index.css
 /*header*/
 .todo-header input {
@@ -126,7 +131,8 @@ Header/index.css
   border-color: rgba(82, 168, 236, 0.8);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
-复制代码
+
+
 List/index.jsx
 import React, { Component } from 'react'
 import Item from '../Item'
@@ -142,7 +148,8 @@ export default class List extends Component {
   }
 }
 
-复制代码
+
+
 List/index.css
 /*main*/
 .todo-main {
@@ -160,7 +167,8 @@ List/index.css
   padding-left: 5px;
   margin-top: 10px;
 }
-复制代码
+
+
 Item/index.jsx
 import React, { Component } from 'react'
 import './index.css'
@@ -179,7 +187,8 @@ export default class Item extends Component {
   }
 }
 
-复制代码
+
+
 Item/index.css
 /*item*/
 li {
@@ -216,7 +225,8 @@ li:last-child {
   border-bottom: none;
 }
 
-复制代码
+
+
 Footer/index.jsx
 import React, { Component } from 'react'
 import './index.css'
@@ -237,7 +247,8 @@ export default class Footer extends Component {
   }
 }
 
-复制代码
+
+
 Footer/index.css
 /*footer*/
 .todo-footer {
@@ -264,7 +275,8 @@ Footer/index.css
   float: right;
   margin-top: 5px;
 }
-复制代码
+
+
 页面效果
 
 5. 动态组件
@@ -314,7 +326,8 @@ export default class App extends Component {
     )
   }
 }
-复制代码
+
+
 List/index.jsx
 子组件通过this.props得到父组件传递过来的状态
 通过循环遍历todos得到一个个todo，将他们传递给Item子组件
@@ -334,7 +347,8 @@ export default class List extends Component {
     )
   }
 }
-复制代码
+
+
 Item/index.jsx
 子组件通过this.props得到父组件传递过来的每个todo的状态
 动态渲染props中获取的状态 name 和 done
@@ -352,7 +366,7 @@ export default class Item extends Component {
     )
   }
 }
-复制代码
+
 
 5.2 动态添加todo
 子组件要向父组件 传递 得到的输入值
@@ -385,7 +399,8 @@ export default class App extends Component {
     );
   }
 }
-复制代码
+
+
 Header/index.js
 生成唯一id的库
 uuid
@@ -417,7 +432,8 @@ export default class Header extends Component {
     )
   }
 }
-复制代码
+
+
 
 5.3 鼠标悬浮高亮
 定义一个mouse状态，用来 标识鼠标移入移出
@@ -452,7 +468,8 @@ export default class Item extends Component {
     )
   }
 }
-复制代码
+
+
 
 5.4 勾选 改变 状态
 勾选前面的选中框，要改变到state中的数据
@@ -487,7 +504,8 @@ export default class App extends Component {
     );
   }
 }
-复制代码
+
+
 List/index.jsx
 中转 从父组件App中传过来的函数，继续传给它的子组件Item，完成祖孙组件中的通信
 export default class List extends Component {
@@ -504,7 +522,8 @@ export default class List extends Component {
     )
   }
 }
-复制代码
+
+
 Item/index.jsx
 通过List中转终于拿到祖先组件App中的函数updateTodo
 组件中定义onChange事件的回调函数handleCheck ，【高阶函数+柯里化】
@@ -535,7 +554,8 @@ export default class Item extends Component {
     )
   }
 }
-复制代码
+
+
 5.5 对props进行限制
 
 类型及必要性设置
@@ -558,7 +578,8 @@ export default class List extends Component {
       updateTodo: PropTypes.func.isRequired
   }
 }
-复制代码
+
+
 import PropTypes from 'prop-types'
 export default class Item extends Component {
   // 对接收的props进行类型以及必要性的限制
@@ -566,7 +587,8 @@ export default class Item extends Component {
     updateTodo: PropTypes.func.isRequired
   }
 }
-复制代码
+
+
 5.5 删除一个todo
 选中一个todo，点击删除按钮，删除这个todo
 App.jsx
@@ -594,7 +616,8 @@ export default class App extends Component {
       </div>
     );
   }
-复制代码
+
+
 List/index.jsx
 中转拿到和函数继续传递
 export default class List extends Component {
@@ -617,7 +640,8 @@ export default class List extends Component {
     )
   }
 }
-复制代码
+
+
 Item/index.jsx
 得到传递到的函数，将id作为函数参数传递给父组件
 定义绑定点击事件 这次没用高阶函数，换了一种写法，效果是一样的
@@ -652,7 +676,8 @@ export default class Item extends Component {
     )
   }
 }
-复制代码
+
+
 
 5.6 底部Footer
 App.jsx
@@ -692,7 +717,8 @@ export default class App extends Component {
     );
   }
 }
-复制代码
+
+
 Footer/index.jsx
 拿到todos
 用来计算两个数据doneCount和total，显示在页面中
@@ -726,7 +752,8 @@ export default class Footer extends Component {
     )
   }
 }
-复制代码
+
+
 
 6. 总结
 
