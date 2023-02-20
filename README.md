@@ -1,27 +1,36 @@
-1. 使用create-react-app创建react应用
-1.1. react脚手架
-
-xxx脚手架: 用来帮助程序员快速创建一个基于xxx库的模板项目
-
-包含了所有需要的配置（语法检查、jsx编译、devServer…）
-下载好了所有相关的依赖
-可以直接运行一个简单效果
+# 使用create-react-app创建react应用
 
 
-react提供了一个用于创建react项目的脚手架库: create-react-app
-项目的整体技术架构为:  react + webpack + es6 + eslint
-使用脚手架开发的项目的特点: 模块化, 组件化, 工程化
+## 1.1. react脚手架
 
-1.2. 创建项目并启动
+1.xxx脚手架: 用来帮助程序员快速创建一个基于xxx库的模板项目
 
-全局安装：npm install -g create-react-app
-切换到想创项目的目录，使用命令：create-react-app hello-react
-进入项目文件夹：cd hello-react
-启动项目：npm start
+* 包含了所有需要的配置（语法检查、jsx编译、devServer…）
+
+* 下载好了所有相关的依赖
+
+* 可以直接运行一个简单效果
+
+2.react提供了一个用于创建react项目的脚手架库: create-react-app
+
+3.项目的整体技术架构为:  react + webpack + es6 + eslint
+
+4.使用脚手架开发的项目的特点: 模块化, 组件化, 工程化
+
+## 1.2. 创建项目并启动
+
+全局安装：**npm install -g create-react-app**
+
+切换到想创项目的目录，使用命令：**create-react-app hello-react**
+
+进入项目文件夹：**cd hello-react**
+
+启动项目：**npm start**
 
 
 
-1.3. react脚手架项目结构
+## 1.3. react脚手架项目结构
+
 public ---- 静态资源文件夹
 	favicon.icon ------ 网站页签图标
 	index.html -------- 主页面
@@ -38,8 +47,10 @@ src ---- 源码文件夹
 	logo.svg ------- logo图
 	reportWebVitals.js --- 页面性能分析文件(需要web-vitals库的支持)
 	setupTests.js ---- 组件单元测试的文件(需要jest-dom库的支持)
-复制代码
-index.html
+
+
+**>>index.html**
+```javascript
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,8 +101,10 @@ index.html
 </body>
 
 </html>
-复制代码
-index.js
+```
+
+**>>index.js**
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -109,8 +122,10 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-复制代码
-App.js
+```
+
+**>>App.js**
+```javascript
 import logo from './logo.svg';
 import './App.css';
 
@@ -136,36 +151,47 @@ function App() {
 }
 
 export default App;
-复制代码
-1.4. 功能界面的组件化编码流程（通用）
+```
 
-拆分组件: 拆分界面,抽取组件
-实现静态组件: 使用组件实现静态页面效果
-实现动态组件
+## 1.4. 功能界面的组件化编码流程（通用）
 
-动态显示初始化数据
+1.拆分组件: 拆分界面,抽取组件
 
-数据类型
-数据名称
-保存在哪个组件
+2.实现静态组件: 使用组件实现静态页面效果
+
+3.实现动态组件
+
+* 动态显示初始化数据
+
+  * 数据类型
+
+  * 数据名称
+
+  * 保存在哪个组件
+
+* 交互(从绑定事件监听开始)
 
 
-交互(从绑定事件监听开始)
+# 2. 脚手架版 Hello React
+
+## 2.1 注意事项
+
+  1.为了区分组件和普通js文件，可以把定义组件的js文件后缀改成jsx
+
+  2.一个组件一个文件夹
+
+  3.引入js文件或者jsx文件时，可以不写后缀名
+
+  4.组件文件夹中的文件可以都命名为index，例如 index.jsx/index.css，引入的时候可以直接引到目录名就行了
+
+## 2.2 文件目录
 
 
 
-2. 脚手架版 Hello React
-2.1 注意事项
+## 2.3 代码
 
-为了区分组件和普通js文件，可以把定义组件的js文件后缀改成jsx
-一个组件一个文件夹
-引入js文件或者jsx文件时，可以不写后缀名
-组件文件夹中的文件可以都命名为index，例如 index.jsx/index.css，引入的时候可以直接引到目录名就行了
-
-2.2 文件目录
-
-2.3 代码
-index.html
+**>>index.html**
+```javascript
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -177,8 +203,10 @@ index.html
     <div id="root"></div>
   </body>
 </html>
-复制代码
-index.js
+```
+
+**>>index.js**
+```javascript
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -189,8 +217,10 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-复制代码
-App.js
+```
+
+**>>App.js**
+```javascript
 import React, { Component } from "react";
 import Hello from "./components/Hello/Hello";
 import Welcome from "./components/Welcome/Welcome";
@@ -204,9 +234,10 @@ export default class App extends Component {
     );
   }
 }
+```
 
-复制代码
-Hello.jsx
+**>>Hello.jsx**
+```javascript
 import React, { Component } from "react";
 import "./Hello.css";
 export default class Hello extends Component {
@@ -218,13 +249,17 @@ export default class Hello extends Component {
     );
   }
 }
-复制代码
-Hello.css
+```
+
+**>>Hello.css**
+```javascript
 .title {
   background-color: pink;
 }
-复制代码
-Welcome.jsx
+```
+
+**>>Welcome.jsx**
+```javascript
 import React, { Component } from "react";
 import "./Welcome.css";
 
@@ -233,19 +268,25 @@ export default class Welcome extends Component {
     return <h2 className="demo">Welcome</h2>;
   }
 }
-复制代码
-Welcome.css
+```
+
+**>>Welcome.css**
+```javascript
 .demo {
   background-color: skyblue;
 }
-复制代码
-2.4 页面
+```
+## 2.4 页面
 
-3. VSCode生成代码模板
+# 3. VSCode生成代码模板
+
+
 
 rcc+回车 （react class component）
+
 rfc（react function component）
 
+```javascript
 import React, { Component } from 'react'
 
 export default class Demo extends Component {
@@ -257,14 +298,11 @@ export default class Demo extends Component {
     )
   }
 }
-复制代码
+```
 
-4. 样式的模块化
-文件名保存为 index.module.css
-引入文件 import hello from './index.module.css'
-使用样式 <h2 className={hello.title}> Hello </h2>
+# 4. 样式的模块化
+文件名保存为 **index.module.css**
 
-作者：YK菌
-链接：https://juejin.cn/post/7016278634348412964
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+引入文件 **import hello from './index.module.css'**
+
+使用样式 **<h2 className={hello.title}> Hello </h2>**
