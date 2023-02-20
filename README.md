@@ -1,270 +1,747 @@
-1. 使用create-react-app创建react应用
-1.1. react脚手架
+# TodoList
 
-xxx脚手架: 用来帮助程序员快速创建一个基于xxx库的模板项目
+1. 目标功能界面
 
-包含了所有需要的配置（语法检查、jsx编译、devServer…）
-下载好了所有相关的依赖
-可以直接运行一个简单效果
+2. 界面模块拆分
 
 
-react提供了一个用于创建react项目的脚手架库: create-react-app
-项目的整体技术架构为:  react + webpack + es6 + eslint
-使用脚手架开发的项目的特点: 模块化, 组件化, 工程化
-
-1.2. 创建项目并启动
-
-全局安装：npm install -g create-react-app
-切换到想创项目的目录，使用命令：create-react-app hello-react
-进入项目文件夹：cd hello-react
-启动项目：npm start
-
-
-
-1.3. react脚手架项目结构
-public ---- 静态资源文件夹
-	favicon.icon ------ 网站页签图标
-	index.html -------- 主页面
-	logo192.png ------- logo图
-	logo512.png ------- logo图
-	manifest.json ----- 应用加壳的配置文件
-	robots.txt -------- 爬虫协议文件
-src ---- 源码文件夹
-	App.css -------- App组件的样式
-	App.js --------- App组件
-	App.test.js ---- 用于给App做测试
-	index.css ------ 样式
-	index.js ------- 入口文件
-	logo.svg ------- logo图
-	reportWebVitals.js --- 页面性能分析文件(需要web-vitals库的支持)
-	setupTests.js ---- 组件单元测试的文件(需要jest-dom库的支持)
-复制代码
-index.html
+3. 主页 index.html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
-  <!-- %PUBLIC_URL%代表public文件夹的路径 -->
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <!-- 开启理想视口，用于做移动端网页的适配 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- 用于配置浏览器页签+地址栏的颜色(仅支持安卓手机浏览器) -->
-  <meta name="theme-color" content="red" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <!-- 用于指定网页添加到手机主屏幕后的图标 -->
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  
-  <!--
-    manifest.json provides metadata used when your web app is installed on a
-    user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-  -->
-  <!-- 应用加壳时的配置文件 -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
-    Notice the use of %PUBLIC_URL% in the tags above.
-    It will be replaced with the URL of the `public` folder during the build.
-    Only files inside the `public` folder can be referenced from the HTML.
-
-    Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-    work correctly both with client-side routing and a non-root public URL.
-    Learn how to configure a non-root public URL by running `npm run build`.
-  -->
   <title>React App</title>
 </head>
 
 <body>
-  <!-- 若浏览器不支持js则展示标签中的内容 -->
-  <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <!--
-    This HTML file is a template.
-    If you open it directly in the browser, you will see an empty page.
-
-    You can add webfonts, meta tags, or analytics to this file.
-    The build step will place the bundled scripts into the <body> tag.
-
-    To begin the development, run `npm start` or `yarn start`.
-    To create a production bundle, use `npm run build` or `yarn build`.
-  -->
 </body>
 
 </html>
 复制代码
-index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
-复制代码
-App.js
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
-复制代码
-1.4. 功能界面的组件化编码流程（通用）
-
-拆分组件: 拆分界面,抽取组件
-实现静态组件: 使用组件实现静态页面效果
-实现动态组件
-
-动态显示初始化数据
-
-数据类型
-数据名称
-保存在哪个组件
-
-
-交互(从绑定事件监听开始)
-
-
-
-2. 脚手架版 Hello React
-2.1 注意事项
-
-为了区分组件和普通js文件，可以把定义组件的js文件后缀改成jsx
-一个组件一个文件夹
-引入js文件或者jsx文件时，可以不写后缀名
-组件文件夹中的文件可以都命名为index，例如 index.jsx/index.css，引入的时候可以直接引到目录名就行了
-
-2.2 文件目录
-
-2.3 代码
-index.html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <title>React App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
-复制代码
+4. 静态页面搭建
 index.js
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDDOM from "react-dom";
 import App from "./App";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+ReactDDOM.render(<App />, document.getElementById("root"));
 复制代码
-App.js
+App.jsx
 import React, { Component } from "react";
-import Hello from "./components/Hello/Hello";
-import Welcome from "./components/Welcome/Welcome";
+import Header from "./components/Header";
+import List from "./components/List";
+import Footer from "./components/Footer";
+import './App.css'
+
 export default class App extends Component {
   render() {
     return (
-      <div>
-        <Hello></Hello>
-        <Welcome></Welcome>
-      </div>
-    );
-  }
-}
-
-复制代码
-Hello.jsx
-import React, { Component } from "react";
-import "./Hello.css";
-export default class Hello extends Component {
-  render() {
-    return (
-      <div>
-        <h1 className="title">Hello React</h1>
+      <div className="todo-container">
+        <div className="todo-warp">
+          <Header />
+          <List />
+          <Footer />
+        </div>
       </div>
     );
   }
 }
 复制代码
-Hello.css
-.title {
-  background-color: pink;
+App.css
+/*base*/
+body {
+  background: #fff;
+}
+
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #da4f49;
+  border: 1px solid #bd362f;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #bd362f;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+/*app*/
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 复制代码
-Welcome.jsx
-import React, { Component } from "react";
-import "./Welcome.css";
-
-export default class Welcome extends Component {
-  render() {
-    return <h2 className="demo">Welcome</h2>;
-  }
-}
-复制代码
-Welcome.css
-.demo {
-  background-color: skyblue;
-}
-复制代码
-2.4 页面
-
-3. VSCode生成代码模板
-
-rcc+回车 （react class component）
-rfc（react function component）
-
+Header/index.js
 import React, { Component } from 'react'
+import './index.css'
 
-export default class Demo extends Component {
+export default class Header extends Component {
   render() {
     return (
-      <div>
-        
+      <div className="todo-header">
+        <input type="text" placeholder="请输入你的任务名称，按回车键确认"/>
+      </div>
+    )
+  }
+}
+
+复制代码
+Header/index.css
+/*header*/
+.todo-header input {
+  width: 560px;
+  height: 28px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 7px;
+}
+
+.todo-header input:focus {
+  outline: none;
+  border-color: rgba(82, 168, 236, 0.8);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+复制代码
+List/index.jsx
+import React, { Component } from 'react'
+import Item from '../Item'
+import './index.css'
+
+export default class List extends Component {
+  render() {
+    return (
+      <ul className="todo-main">
+        <Item />
+      </ul>
+    )
+  }
+}
+
+复制代码
+List/index.css
+/*main*/
+.todo-main {
+  margin-left: 0px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding: 0px;
+}
+
+.todo-empty {
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding-left: 5px;
+  margin-top: 10px;
+}
+复制代码
+Item/index.jsx
+import React, { Component } from 'react'
+import './index.css'
+
+export default class Item extends Component {
+  render() {
+    return (
+      <li>
+        <label>
+          <input type="checkbox"/>
+          <span>xxxxx</span>
+        </label>
+        <button className="btn btn-danger" style={{display:'none'}}>删除</button>
+      </li>
+    )
+  }
+}
+
+复制代码
+Item/index.css
+/*item*/
+li {
+  list-style: none;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+li label {
+  float: left;
+  cursor: pointer;
+}
+
+li label li input {
+  vertical-align: middle;
+  margin-right: 6px;
+  position: relative;
+  top: -1px;
+}
+
+li button {
+  float: right;
+  display: none;
+  margin-top: 3px;
+}
+
+li:before {
+  content: initial;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+复制代码
+Footer/index.jsx
+import React, { Component } from 'react'
+import './index.css'
+
+export default class Footer extends Component {
+  render() {
+    return (
+      <div className="todo-footer">
+      <label>
+        <input type="checkbox"/>
+      </label>
+      <span>
+        <span>已完成0</span> / 全部2
+      </span>
+      <button className="btn btn-danger">清除已完成任务</button>
+    </div>
+    )
+  }
+}
+
+复制代码
+Footer/index.css
+/*footer*/
+.todo-footer {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 6px;
+  margin-top: 5px;
+}
+
+.todo-footer label {
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.todo-footer label input {
+  position: relative;
+  top: -1px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.todo-footer button {
+  float: right;
+  margin-top: 5px;
+}
+复制代码
+页面效果
+
+5. 动态组件
+5.1 动态初始化页面
+
+状态驱动组件
+
+考虑两个问题  要将状态放在哪？ 状态的存储形式是什么？
+
+
+可以将状态放在需要使用状态的 父组件 App中，这样Header和List都可以通过props拿到状态数据
+
+
+状态的存储形式采用对象数组
+
+
+// 初始化状态
+state = {
+  todos: [
+    { id: '001', name: '吃饭', done: true },
+    { id: '002', name: '睡觉', done: true },
+    { id: '003', name: '敲代码', done: false },
+  ]
+}
+复制代码
+App.jsx
+在App.jsx组件中定义状态state，通过标签属性传递给子组件List的props中
+export default class App extends Component {
+  // 初始化状态
+  state = {
+    todos: [
+      { id: '001', name: '吃饭', done: true },
+      { id: '002', name: '睡觉', done: true },
+      { id: '003', name: '敲代码', done: false },
+    ]
+  }
+  render() {
+    const  {todos} = this.state
+    return (
+      <div className="todo-container">
+        <div className="todo-warp">
+          <Header />
+          <List todos={todos} />
+          <Footer />
+        </div>
+      </div>
+    )
+  }
+}
+复制代码
+List/index.jsx
+子组件通过this.props得到父组件传递过来的状态
+通过循环遍历todos得到一个个todo，将他们传递给Item子组件
+通过标签属性的形式，父组件List传递状态到子组件Item中
+指定key 再展开todo传递给子组件
+export default class List extends Component {
+  render() {
+    const {todos} = this.props
+    return (
+      <ul className="todo-main">
+        {
+          todos.map((todo) => {
+            return <Item key={todo.id} {...todo}/>
+          })
+        }
+      </ul>
+    )
+  }
+}
+复制代码
+Item/index.jsx
+子组件通过this.props得到父组件传递过来的每个todo的状态
+动态渲染props中获取的状态 name 和 done
+export default class Item extends Component {
+  render() {
+    const { name, done } = this.props
+    return (
+      <li>
+        <label>
+          <input type="checkbox" defaultChecked={done}/>
+          <span>{name}</span>
+        </label>
+        <button className="btn btn-danger" style={{display:'none'}}>删除</button>
+      </li>
+    )
+  }
+}
+复制代码
+
+5.2 动态添加todo
+子组件要向父组件 传递 得到的输入值
+可以通过调用函数， 传递参数的形式 来传递状态
+App.jsx
+状态在父组件中，修改状态的操作就定义在父组件中
+在父组件中定义一个addTodo函数，然后通过标签传递给子组件
+addTodo函数接受一个参数，这个参数就是要接受的子组件的数据
+通过这个参数，将子组件的数据传给父组件
+export default class App extends Component {
+  // 用于添加一个todo，接受的参数是todo对象
+  addTodo = (todoObj) => {
+    // 获取原todos
+    const { todos } = this.state
+    // 追加一个todo
+    const newTodos = [todoObj, ...todos]
+    // 更新状态
+    this.setState({ todos: newTodos })
+  }
+  render() {
+    const  {todos} = this.state
+    return (
+      <div className="todo-container">
+        <div className="todo-warp">
+          <Header addTodo={this.addTodo} />
+          <List todos={todos} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+}
+复制代码
+Header/index.js
+生成唯一id的库
+uuid
+nanoid
+npm install nanoid
+
+父组件通过标签属性传递了一个函数给子组件，子组件可以通过this.props来调用函数
+函数的参数，就是子组件要传递给父组件的数据
+export default class Header extends Component {
+  handleKeyUp = (event) => {
+    const {keyCode, target} = event
+    if (keyCode !== 13) return
+    if (target.value.trim() === '') {
+      alert('输入不能为空')
+      return
+    }
+    this.props.addTodo({
+      id: nanoid(),
+      name: target.value,
+      done: false
+    })
+    target.value = ''
+  }
+  render() {
+    return (
+      <div className="todo-header">
+        <input onKeyUp={this.handleKeyUp} type="text" placeholder="请输入你的任务名称，按回车键确认"/>
       </div>
     )
   }
 }
 复制代码
 
-4. 样式的模块化
-文件名保存为 index.module.css
-引入文件 import hello from './index.module.css'
-使用样式 <h2 className={hello.title}> Hello </h2>
+5.3 鼠标悬浮高亮
+定义一个mouse状态，用来 标识鼠标移入移出
+通过mouse状态的改变，来改变style样式（背景颜色+删除按钮显示与隐藏）
+Item/index.js
+export default class Item extends Component {
+  // 标识鼠标移入移出
+  state = {
+    mouse: false
+  }
+  // 鼠标移入移出的回调
+  handleMouse = (flag) => {
+    return () => {
+      this.setState({mouse: flag})
+    }
+  }
+  render() {
+    const { name, done } = this.props
+    const {mouse} = this.state
+    return (
+      <li
+        style={{ backgroundColor: mouse ? '#ddd' : 'white' }}
+        onMouseEnter={this.handleMouse(true)}
+        onMouseLeave={this.handleMouse(false)}
+      >
+        <label>
+          <input type="checkbox" defaultChecked={done}/>
+          <span>{name}</span>
+        </label>
+        <button className="btn btn-danger" style={{display: mouse?'block':'none'}}>删除</button>
+      </li>
+    )
+  }
+}
+复制代码
 
-作者：YK菌
-链接：https://juejin.cn/post/7016278634348412964
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+5.4 勾选 改变 状态
+勾选前面的选中框，要改变到state中的数据
+根据选中的框所属的todo的id找到数据，根据更改后done的值更新相应的done的值
+App.jsx
+在父组件中定义一个更新todo的函数，然后传递给子组件
+根据拿到的id和done的值，来更新状态state中相应id数据的值
+export default class App extends Component {
+  // 用于更新一个todo
+  updateTodo = (id, done) => {
+    const { todos } = this.state
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return {...todo, done: done}
+      } else {
+        return todo
+      }
+    })
+    this.setState({todos: newTodos})
+  }
+  
+  render() {
+    const  {todos} = this.state
+    return (
+      <div className="todo-container">
+        <div className="todo-warp">
+          <Header addTodo={this.addTodo} />
+          <List todos={todos} updateTodo={this.updateTodo}/>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+}
+复制代码
+List/index.jsx
+中转 从父组件App中传过来的函数，继续传给它的子组件Item，完成祖孙组件中的通信
+export default class List extends Component {
+  render() {
+    const {todos, updateTodo} = this.props
+    return (
+      <ul className="todo-main">
+        {
+          todos.map((todo) => {
+            return <Item key={todo.id} {...todo} updateTodo={updateTodo}/>
+          })
+        }
+      </ul>
+    )
+  }
+}
+复制代码
+Item/index.jsx
+通过List中转终于拿到祖先组件App中的函数updateTodo
+组件中定义onChange事件的回调函数handleCheck ，【高阶函数+柯里化】
+在回调函数中返回传递过来的函数并传入参数
+export default class Item extends Component {
+  // 勾选、取消勾选todo的回调
+  handleCheck = (id) => {
+    return (event) => {
+      this.props.updateTodo(id, event.target.checked)
+    }
+  }
+
+  render() {
+    const { id, name, done } = this.props
+    const {mouse} = this.state
+    return (
+      <li
+        style={{ backgroundColor: mouse ? '#ddd' : 'white' }}
+        onMouseEnter={this.handleMouse(true)}
+        onMouseLeave={this.handleMouse(false)}
+      >
+        <label>
+          <input type="checkbox" defaultChecked={done} onChange={ this.handleCheck(id) }/>
+          <span>{name}</span>
+        </label>
+        <button className="btn btn-danger" style={{display:mouse?'block':'none'}}>删除</button>
+      </li>
+    )
+  }
+}
+复制代码
+5.5 对props进行限制
+
+类型及必要性设置
+
+自行安装 prop-types 库 npm i prop-types
+
+import PropTypes from 'prop-types'
+export default class Header extends Component {
+  // 对接收的props进行类型以及必要性的限制
+  static propTypes = {
+    addTodo: PropTypes.func.isRequired
+  }
+}
+复制代码
+import PropTypes from 'prop-types'
+export default class List extends Component {
+  // 对接收的props进行类型以及必要性的限制
+  static propTypes = {
+      todos: PropTypes.array.isRequired,
+      updateTodo: PropTypes.func.isRequired
+  }
+}
+复制代码
+import PropTypes from 'prop-types'
+export default class Item extends Component {
+  // 对接收的props进行类型以及必要性的限制
+  static propTypes = {
+    updateTodo: PropTypes.func.isRequired
+  }
+}
+复制代码
+5.5 删除一个todo
+选中一个todo，点击删除按钮，删除这个todo
+App.jsx
+因为状态数据在父组件中，所以删除todo的函数就定义在App中
+然后将函数传递给子组件
+export default class App extends Component {
+  // 用于删除一个todo
+  deleteTodo = (id) => {
+    const { todos } = this.state
+    const newTodos = todos.filter((todo) => {
+      return todo.id !== id
+    })
+    this.setState({todos:newTodos})
+  }
+  
+  render() {
+    const  {todos} = this.state
+    return (
+      <div className="todo-container">
+        <div className="todo-warp">
+          <Header addTodo={this.addTodo} />
+          <List todos={todos} updateTodo={this.updateTodo} deleteTodo={this.deleteTodo} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+复制代码
+List/index.jsx
+中转拿到和函数继续传递
+export default class List extends Component {
+  // 对接收的props进行类型以及必要性的限制
+  static propTypes = {
+    todos: PropTypes.array.isRequired,
+    updateTodo: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired
+  }
+  render() {
+    const {todos, updateTodo, deleteTodo} = this.props
+    return (
+      <ul className="todo-main">
+        {
+          todos.map((todo) => {
+            return <Item key={todo.id} {...todo} updateTodo={updateTodo} deleteTodo={ deleteTodo }/>
+          })
+        }
+      </ul>
+    )
+  }
+}
+复制代码
+Item/index.jsx
+得到传递到的函数，将id作为函数参数传递给父组件
+定义绑定点击事件 这次没用高阶函数，换了一种写法，效果是一样的
+export default class Item extends Component {
+  // 对接收的props进行类型以及必要性的限制
+  static propTypes = {
+    updateTodo: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired
+  }
+  // 删除一个todo的回调
+  handleDelete = (id) => {
+    if (window.confirm(`确定删除嘛？`)) {
+      this.props.deleteTodo(id)
+    }
+  }
+  
+  render() {
+    const { id, name, done } = this.props
+    const {mouse} = this.state
+    return (
+      <li
+        style={{ backgroundColor: mouse ? '#ddd' : 'white' }}
+        onMouseEnter={this.handleMouse(true)}
+        onMouseLeave={this.handleMouse(false)}
+      >
+        <label>
+          <input type="checkbox" defaultChecked={done} onChange={ this.handleCheck(id) }/>
+          <span>{name}</span>
+        </label>
+        <button onClick={ () => this.handleDelete(id) } className="btn btn-danger" style={{display:mouse?'block':'none'}}>删除</button>
+      </li>
+    )
+  }
+}
+复制代码
+
+5.6 底部Footer
+App.jsx
+在App中将todos传给Footer
+在App中定义全选和全不选的todos来更新状态
+在App中定义清除所有已完成的todo
+export default class App extends Component {
+  // 用于全选
+  checkAll = (done) => {
+    // 获取原来的todos
+    const { todos } = this.state
+    // 过滤数据
+    const newTodos = todos.map((todo) => {
+      return {...todo, done: done}
+    })
+    // 更新状态
+    this.setState({todos: newTodos})
+  }
+  // 清除所有已经完成的
+  clearAllDone = () => {
+    const { todos } = this.state
+    const newTodos = todos.filter((todo) => {
+      return !todo.done
+    })
+    this.setState({todos: newTodos})
+  }
+  render() {
+    const  {todos} = this.state
+    return (
+      <div className="todo-container">
+        <div className="todo-warp">
+          <Header addTodo={this.addTodo} />
+          <List todos={todos} updateTodo={this.updateTodo} deleteTodo={this.deleteTodo} />
+          <Footer todos={todos} checkAll={this.checkAll} clearAllDone={this.clearAllDone} />
+        </div>
+      </div>
+    );
+  }
+}
+复制代码
+Footer/index.jsx
+拿到todos
+用来计算两个数据doneCount和total，显示在页面中
+定义两个回调函数handleCheckAll和handleClearAllDone
+再从父组件接收两个函数然后调用
+export default class Footer extends Component {
+  // 全选
+  handleCheckAll = (event) => {
+    this.props.checkAll(event.target.checked)
+  }
+  // 清除所有已完成的回调
+  handleClearAllDone = () => {
+    this.props.clearAllDone()
+  }
+  render() {
+    const { todos } = this.props
+    // 计算已完成
+    const doneCount = todos.reduce((pre, todo) => { return pre + (todo.done ? 1: 0) }, 0)
+    // 计算总数
+    const total = todos.length
+    return (
+      <div className="todo-footer">
+      <label>
+          <input type="checkbox" onChange={this.handleCheckAll} checked={doneCount === total && total !== 0 ? true: false }/>
+      </label>
+      <span>
+          <span>已完成{ doneCount }</span> / 全部{total}
+      </span>
+      <button onClick={this.handleClearAllDone} className="btn btn-danger">清除已完成任务</button>
+    </div>
+    )
+  }
+}
+复制代码
+
+6. 总结
+
+拆分组件、实现静态组件，注意：className、style的写法
+动态初始化列表，如何确定将数据放在哪个组件的state中？
+
+某个组件使用：放在其 自身 的state中
+某些组件使用：放在他们共同的 父组件 state中（官方称此操作为：状态提升）
+
+
+关于父子之间通信：
+
+【父组件】给【子组件】传递数据：通过props传递
+【子组件】给【父组件】传递数据：通过props传递，要求父提前给子传递一个函数
+
+
+注意defaultChecked （只在第一次指定的时候有作用，之后就没作用了）和 checked的区别，类似的还有：defaultValue 和 value
+状态在哪里，操作状态的方法就在哪里
