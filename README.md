@@ -27,6 +27,9 @@
 
 启动项目：**npm start**
 
+![image](https://user-images.githubusercontent.com/117837871/220043507-be6a541b-0555-45ef-9f6b-3b4d3d7f2933.png)
+
+![image](https://user-images.githubusercontent.com/117837871/220043555-34074e8d-6f6e-4465-b3f4-3b66839e455d.png)
 
 
 ## 1.3. react脚手架项目结构
@@ -201,6 +204,7 @@ export default App;
 
 ## 2.2 文件目录
 
+![image](https://user-images.githubusercontent.com/117837871/220043678-0443345f-4ad2-4437-a593-ef3bd9cba086.png)
 
 
 ## 2.3 代码
@@ -293,11 +297,18 @@ export default class Welcome extends Component {
 ```
 ## 2.4 页面
 
+![image](https://user-images.githubusercontent.com/117837871/220043748-e4348946-70a0-4c1b-b839-a110a2ef6382.png)
+
+
 # 3. VSCode生成代码模板
 
+![image](https://user-images.githubusercontent.com/117837871/220043789-c8f7da4b-7405-4279-b1fd-f644c920d5dc.png)
 
 
 rcc+回车 （react class component）
+
+![image](https://user-images.githubusercontent.com/117837871/220043844-498fe04c-4675-4891-81b3-fcee7c9c1a97.png)
+
 
 rfc（react function component）
 
@@ -314,6 +325,7 @@ export default class Demo extends Component {
   }
 }
 ```
+![image](https://user-images.githubusercontent.com/117837871/220043913-c6f6f826-a2e6-46d8-b6d6-befc49fc5948.png)
 
 # 4. 样式的模块化
 文件名保存为 **index.module.css**
