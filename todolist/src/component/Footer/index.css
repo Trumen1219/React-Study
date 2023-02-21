@@ -10,8 +10,9 @@
     width: 200px;
 }
 .allClear{
-    background-color: rgb(177, 13, 13);
+    background-color: rgb(230, 41, 41);
     width: 120px;
     height: 30px;
-    float: right;
+    border-radius: 3px;
+    border: 0;
 }

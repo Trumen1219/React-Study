@@ -2,10 +2,11 @@
     list-style-type: none;
 }
 .clear{
-    background-color: rgb(177, 13, 13);
-    width: 120px;
+    background-color: rgb(240, 87, 87);
+    width: 100px;
     height: 30px;
-    float: right;
+    border: 0;
+    border-radius: 3px;
 }
 .todoItem{
     display: flex;

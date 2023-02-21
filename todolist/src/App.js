@@ -11,16 +11,16 @@ export default class App extends Component{
       {id:'002',done:false,name:'擦碗'}
     ]
   }
+  handlerAdd=(todoObj)=>{
+    const {todos} = this.state
+    const newObj = [todoObj,...todos]
+    this.setState({todos:newObj})
+  }
   render(){
     const {todos} = this.state
-    handlerAdd=(todoObj)=>{
-      const {todos} = this.state
-      const newObj = [todoObj,...todos]
-      this.setState({todos:newObj})
-    }
     return (
       <div className="App">
-        <Header handlerAdd={handlerAdd}/>
+        <Header handlerAdd={this.handlerAdd}/>
         <List todos={todos}/>
         <Footer/>
       </div>
