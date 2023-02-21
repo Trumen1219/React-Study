@@ -28,19 +28,35 @@ export default class App extends Component {
     })
     this.setState({ todos: newTodos })
   }
-  // handlerAllCheck=()=>{
-  //   const {todos} = this.state
-  //   todos.map((todo)=>{
-  //     if(todo.)
-  //   })
-  // }
+  handlerDelete = (id) => {
+    //注意该不该有符号！
+      const { todos } = this.state
+      const newtodos = todos.filter((todo)=>{
+        return todo.id !== id
+      })
+      this.setState({todos: newtodos})
+  }
+  handlerAllCheck=(done)=>{
+    const { todos } = this.state
+    const newtodos = todos.map((todo)=>{
+      return {...todo,done:done}
+    })
+    this.setState({todos: newtodos})
+  }
+  cleanAllCheck=()=>{
+    const {todos} = this.state
+    const newtodos = todos.filter((todo)=>{
+      return !todo.done
+    })
+    this.setState({todos: newtodos})
+  }
   render() {
     const { todos } = this.state
     return (
       <div className="App">
         <Header handlerAdd={this.handlerAdd} />
-        <List todos={todos} handlerChangeCheck={this.handlerChangeCheck} />
-        <Footer />
+        <List todos={todos} handlerChangeCheck={this.handlerChangeCheck} handlerDelete={this.handlerDelete} />
+        <Footer todos={todos} handlerAllCheck={this.handlerAllCheck} cleanAllCheck={this.cleanAllCheck}/>
       </div>
     )
   }
