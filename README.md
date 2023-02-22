@@ -2,7 +2,15 @@
 
 ## 1. 目标功能界面
 
+![image](https://user-images.githubusercontent.com/117837871/220586710-8cda4354-1d15-44b3-8d2e-1196c43a9679.png)
+
+
 ## 2. 界面模块拆分
+
+![image](https://user-images.githubusercontent.com/117837871/220586632-ce9102cb-724b-472c-b580-74e5c67dd91b.png)
+
+![image](https://user-images.githubusercontent.com/117837871/220586897-9993ceae-c17b-4db0-b1fb-f51317040f25.png)
+
 
 
 ## 3. 主页 
@@ -294,10 +302,6 @@ export default class Footer extends Component {
   margin-top: 5px;
 }
 ```
-
-
-页面效果
-
 
 
 ## 5. 动态组件
@@ -865,3 +869,11 @@ export default class Footer extends Component {
 
 注意defaultChecked （只在第一次指定的时候有作用，之后就没作用了）和 checked的区别，类似的还有：defaultValue 和 value
 状态在哪里，操作状态的方法就在哪里
+
+![image](https://user-images.githubusercontent.com/117837871/220587169-d8c3072c-e800-46c0-8db2-83abd26f2911.png)
+
+![image](https://user-images.githubusercontent.com/117837871/220587280-1a81ccc3-a9b7-4012-aeed-b8959acf65a0.png)
+
+![image](https://user-images.githubusercontent.com/117837871/220587310-7b5ec9e9-8c6b-4929-b215-130d49d0e17a.png)
+
+注意defaultChecked （只在第一次指定的时候有作用，之后就没作用了）和 checked的区别，类似的还有：defaultValue 和 value
