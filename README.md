@@ -10,7 +10,7 @@ A few notes of knowledge about React!🥳
 [创建虚拟DOM的两种方式](https://github.com/Trumen1219/React-Study/tree/3-Virtual-DOM/README.md) | Webpack整合 Babel整合
 [React应用](https://github.com/Trumen1219/React-Study/tree/4-React-apply/README.md) | class、构造器、继承 supuer、抽象类、封装
 [TooDoList](https://github.com/Trumen1219/React-Study/tree/5-ToDoList/README.md)	| 
-[基本理解和使用](https://github.com/Trumen1219/React-Study/tree/2-Component-oriented-programming/README.md)	| 
+[github用户搜索页面与配置代理](https://github.com/Trumen1219/React-Study/tree/6-github-proxy/README.md)	| 
 [组件实例的三大核心属性1: state 状态](https://github.com/Trumen1219/React-Study/tree/2-Component-oriented-programming/README.md) | 
 [组件实例的三大核心属性2: props]
 [组件三大核心属性3: refs与事件处理]
