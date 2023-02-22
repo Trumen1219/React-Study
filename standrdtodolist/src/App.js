@@ -19,8 +19,11 @@ export default class App extends Component {
       }
     ]
   }
-  handlerAdd = () => {
-
+  handlerAdd = (todo) => {
+    const {todoList} = this.state
+    //注意这里是数组
+    const newTodo = [todo,...todoList]
+    this.setState({todoList:newTodo})
   }
   render() {
     const { todoList } = this.state
