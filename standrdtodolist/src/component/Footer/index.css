@@ -1,0 +1,14 @@
+.wrapper{
+    position: relative;
+    width: 100%;
+}
+.cleanDone {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 30px;
+    background-color: #f75656;
+    border-radius: 3px;
+    border: 0;
+}

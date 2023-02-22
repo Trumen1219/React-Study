@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './index.css'
 export default class Item extends Component {
     render() {
         return (
@@ -7,7 +8,7 @@ export default class Item extends Component {
                     <input type="checkbox" />
                     <span>xxxx</span>
                 </div>
-                <button>删除</button>
+                <button className="deleteButton">删除</button>
             </div>
         )
     }

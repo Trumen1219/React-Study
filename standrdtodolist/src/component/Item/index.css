@@ -1,0 +1,20 @@
+.wrapper{
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+}
+.left{
+    width: 50%;
+    height: 30px;
+}
+.deleteButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: right;
+    width: 50px;
+    height: 30px;
+    background-color: #f75656;
+    border-radius: 3px;
+    border: 0;
+}

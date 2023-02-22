@@ -1,6 +1,6 @@
-import Header from '../../todolist/src/component/Header';
-import List from '../../todolist/src/component/List';
-import Footer from '../../todolist/src/component/Footer';
+import Header from './component/Header';
+import List from './component/List';
+import Footer from './component/Footer';
 import './App.css';
 
 function App() {
