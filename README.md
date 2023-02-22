@@ -1,11 +1,14 @@
 # TodoList
 
-1. 目标功能界面
+## 1. 目标功能界面
 
-2. 界面模块拆分
+## 2. 界面模块拆分
 
 
-3. 主页 index.html
+## 3. 主页 
+
+**>>index.html**
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,18 +23,22 @@
 </body>
 
 </html>
+```
 
-4. 静态页面搭建
+## 4. 静态页面搭建
 
-index.js
+**>>index.js**
+```javascript
 import React from "react";
 import ReactDDOM from "react-dom";
 import App from "./App";
 
-ReactDDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
+```
 
 
-App.jsx
+**>>App.jsx**
+```javascript
 import React, { Component } from "react";
 import Header from "./components/Header";
 import List from "./components/List";
@@ -51,9 +58,10 @@ export default class App extends Component {
     );
   }
 }
+```
 
-
-App.css
+**>>App.css**
+```css
 /*base*/
 body {
   background: #fff;
@@ -97,9 +105,10 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+```
 
-
-Header/index.js
+**>>Header/index.js**
+```javascript
 import React, { Component } from 'react'
 import './index.css'
 
@@ -112,10 +121,11 @@ export default class Header extends Component {
     )
   }
 }
+```
 
 
-
-Header/index.css
+**>>Header/index.css**
+```css
 /*header*/
 .todo-header input {
   width: 560px;
@@ -131,9 +141,11 @@ Header/index.css
   border-color: rgba(82, 168, 236, 0.8);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
+```
 
 
-List/index.jsx
+**>>List/index.jsx**
+```javascript
 import React, { Component } from 'react'
 import Item from '../Item'
 import './index.css'
@@ -147,10 +159,11 @@ export default class List extends Component {
     )
   }
 }
+```
 
 
-
-List/index.css
+**>>List/index.css**
+```css
 /*main*/
 .todo-main {
   margin-left: 0px;
@@ -167,9 +180,11 @@ List/index.css
   padding-left: 5px;
   margin-top: 10px;
 }
+```
 
 
-Item/index.jsx
+**>>Item/index.jsx**
+```javascript
 import React, { Component } from 'react'
 import './index.css'
 
@@ -186,10 +201,11 @@ export default class Item extends Component {
     )
   }
 }
+```
 
 
-
-Item/index.css
+**>>Item/index.css**
+```css
 /*item*/
 li {
   list-style: none;
@@ -224,10 +240,11 @@ li:before {
 li:last-child {
   border-bottom: none;
 }
+```
 
 
-
-Footer/index.jsx
+**>>Footer/index.jsx**
+```javascript
 import React, { Component } from 'react'
 import './index.css'
 
@@ -246,10 +263,11 @@ export default class Footer extends Component {
     )
   }
 }
+```
 
 
-
-Footer/index.css
+**>>Footer/index.css**
+```css
 /*footer*/
 .todo-footer {
   height: 40px;
@@ -275,12 +293,16 @@ Footer/index.css
   float: right;
   margin-top: 5px;
 }
+```
 
 
 页面效果
 
-5. 动态组件
-5.1 动态初始化页面
+
+
+## 5. 动态组件
+
+### 5.1 动态初始化页面
 
 状态驱动组件
 
@@ -293,6 +315,7 @@ Footer/index.css
 状态的存储形式采用对象数组
 
 
+```javascript
 // 初始化状态
 state = {
   todos: [
@@ -301,9 +324,11 @@ state = {
     { id: '003', name: '敲代码', done: false },
   ]
 }
-复制代码
-App.jsx
-在App.jsx组件中定义状态state，通过标签属性传递给子组件List的props中
+```
+
+**>>App.jsx**
+```javascript
+//在App.jsx组件中定义状态state，通过标签属性传递给子组件List的props中
 export default class App extends Component {
   // 初始化状态
   state = {
@@ -326,13 +351,19 @@ export default class App extends Component {
     )
   }
 }
+```
 
+**>>List/index.jsx**
 
-List/index.jsx
 子组件通过this.props得到父组件传递过来的状态
+
 通过循环遍历todos得到一个个todo，将他们传递给Item子组件
+
 通过标签属性的形式，父组件List传递状态到子组件Item中
+
 指定key 再展开todo传递给子组件
+
+```javascript
 export default class List extends Component {
   render() {
     const {todos} = this.props
@@ -347,11 +378,15 @@ export default class List extends Component {
     )
   }
 }
+```
 
+**>>Item/index.jsx**
 
-Item/index.jsx
 子组件通过this.props得到父组件传递过来的每个todo的状态
+
 动态渲染props中获取的状态 name 和 done
+
+```javascript
 export default class Item extends Component {
   render() {
     const { name, done } = this.props
@@ -366,16 +401,26 @@ export default class Item extends Component {
     )
   }
 }
+```
 
 
-5.2 动态添加todo
+### 5.2 动态添加todo
+
 子组件要向父组件 传递 得到的输入值
+
 可以通过调用函数， 传递参数的形式 来传递状态
+
 App.jsx
+
 状态在父组件中，修改状态的操作就定义在父组件中
+
 在父组件中定义一个addTodo函数，然后通过标签传递给子组件
+
 addTodo函数接受一个参数，这个参数就是要接受的子组件的数据
+
 通过这个参数，将子组件的数据传给父组件
+
+```javascript
 export default class App extends Component {
   // 用于添加一个todo，接受的参数是todo对象
   addTodo = (todoObj) => {
@@ -399,7 +444,7 @@ export default class App extends Component {
     );
   }
 }
-
+```
 
 Header/index.js
 生成唯一id的库
