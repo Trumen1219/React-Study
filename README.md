@@ -446,14 +446,21 @@ export default class App extends Component {
 }
 ```
 
-Header/index.js
+**>>Header/index.js**
+
 生成唯一id的库
+
 uuid
+
 nanoid
+
 npm install nanoid
 
 父组件通过标签属性传递了一个函数给子组件，子组件可以通过this.props来调用函数
+
 函数的参数，就是子组件要传递给父组件的数据
+
+```javascript
 export default class Header extends Component {
   handleKeyUp = (event) => {
     const {keyCode, target} = event
@@ -477,13 +484,17 @@ export default class Header extends Component {
     )
   }
 }
+```
 
 
+## 5.3 鼠标悬浮高亮
 
-5.3 鼠标悬浮高亮
 定义一个mouse状态，用来 标识鼠标移入移出
+
 通过mouse状态的改变，来改变style样式（背景颜色+删除按钮显示与隐藏）
-Item/index.js
+
+**>>Item/index.js**
+```javascript
 export default class Item extends Component {
   // 标识鼠标移入移出
   state = {
@@ -513,15 +524,21 @@ export default class Item extends Component {
     )
   }
 }
+```
 
 
+## 5.4 勾选 改变 状态
 
-5.4 勾选 改变 状态
 勾选前面的选中框，要改变到state中的数据
+
 根据选中的框所属的todo的id找到数据，根据更改后done的值更新相应的done的值
-App.jsx
+
+**>>App.jsx**
+
 在父组件中定义一个更新todo的函数，然后传递给子组件
+
 根据拿到的id和done的值，来更新状态state中相应id数据的值
+```javascript
 export default class App extends Component {
   // 用于更新一个todo
   updateTodo = (id, done) => {
@@ -549,10 +566,13 @@ export default class App extends Component {
     );
   }
 }
+```
 
 
-List/index.jsx
+**>>List/index.jsx**
+
 中转 从父组件App中传过来的函数，继续传给它的子组件Item，完成祖孙组件中的通信
+```javascript
 export default class List extends Component {
   render() {
     const {todos, updateTodo} = this.props
@@ -567,12 +587,17 @@ export default class List extends Component {
     )
   }
 }
+```
 
 
-Item/index.jsx
+**>>Item/index.jsx**
+
 通过List中转终于拿到祖先组件App中的函数updateTodo
+
 组件中定义onChange事件的回调函数handleCheck ，【高阶函数+柯里化】
+
 在回调函数中返回传递过来的函数并传入参数
+```javascript
 export default class Item extends Component {
   // 勾选、取消勾选todo的回调
   handleCheck = (id) => {
@@ -599,14 +624,14 @@ export default class Item extends Component {
     )
   }
 }
+```
 
-
-5.5 对props进行限制
+## 5.5 对props进行限制
 
 类型及必要性设置
 
 自行安装 prop-types 库 npm i prop-types
-
+```javascript
 import PropTypes from 'prop-types'
 export default class Header extends Component {
   // 对接收的props进行类型以及必要性的限制
@@ -614,7 +639,8 @@ export default class Header extends Component {
     addTodo: PropTypes.func.isRequired
   }
 }
-复制代码
+```
+```javascript
 import PropTypes from 'prop-types'
 export default class List extends Component {
   // 对接收的props进行类型以及必要性的限制
@@ -623,8 +649,9 @@ export default class List extends Component {
       updateTodo: PropTypes.func.isRequired
   }
 }
+```
 
-
+```javascript
 import PropTypes from 'prop-types'
 export default class Item extends Component {
   // 对接收的props进行类型以及必要性的限制
@@ -632,13 +659,17 @@ export default class Item extends Component {
     updateTodo: PropTypes.func.isRequired
   }
 }
+```
 
+## 5.5 删除一个todo
 
-5.5 删除一个todo
 选中一个todo，点击删除按钮，删除这个todo
-App.jsx
+
+**>>App.jsx**
 因为状态数据在父组件中，所以删除todo的函数就定义在App中
+
 然后将函数传递给子组件
+```javascript
 export default class App extends Component {
   // 用于删除一个todo
   deleteTodo = (id) => {
@@ -661,10 +692,12 @@ export default class App extends Component {
       </div>
     );
   }
+```
 
 
-List/index.jsx
+**>>List/index.jsx**
 中转拿到和函数继续传递
+```javascript
 export default class List extends Component {
   // 对接收的props进行类型以及必要性的限制
   static propTypes = {
@@ -685,11 +718,14 @@ export default class List extends Component {
     )
   }
 }
+```
 
 
-Item/index.jsx
+**>>Item/index.jsx**
 得到传递到的函数，将id作为函数参数传递给父组件
+
 定义绑定点击事件 这次没用高阶函数，换了一种写法，效果是一样的
+```javascript
 export default class Item extends Component {
   // 对接收的props进行类型以及必要性的限制
   static propTypes = {
@@ -721,14 +757,19 @@ export default class Item extends Component {
     )
   }
 }
+```
 
 
+##5.6 底部Footer
 
-5.6 底部Footer
-App.jsx
+**>>App.jsx**
+
 在App中将todos传给Footer
+
 在App中定义全选和全不选的todos来更新状态
+
 在App中定义清除所有已完成的todo
+```javascript
 export default class App extends Component {
   // 用于全选
   checkAll = (done) => {
@@ -762,13 +803,17 @@ export default class App extends Component {
     );
   }
 }
+```
 
-
-Footer/index.jsx
+**>>Footer/index.jsx**
 拿到todos
+
 用来计算两个数据doneCount和total，显示在页面中
+
 定义两个回调函数handleCheckAll和handleClearAllDone
+
 再从父组件接收两个函数然后调用
+```javascript
 export default class Footer extends Component {
   // 全选
   handleCheckAll = (event) => {
@@ -797,21 +842,24 @@ export default class Footer extends Component {
     )
   }
 }
+```
 
 
-
-6. 总结
+# 6. 总结
 
 拆分组件、实现静态组件，注意：className、style的写法
+
 动态初始化列表，如何确定将数据放在哪个组件的state中？
 
 某个组件使用：放在其 自身 的state中
+
 某些组件使用：放在他们共同的 父组件 state中（官方称此操作为：状态提升）
 
 
 关于父子之间通信：
 
 【父组件】给【子组件】传递数据：通过props传递
+
 【子组件】给【父组件】传递数据：通过props传递，要求父提前给子传递一个函数
 
 
