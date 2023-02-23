@@ -11,9 +11,5 @@ A few notes of knowledge about React!🥳
 [React应用](https://github.com/Trumen1219/React-Study/tree/4-React-apply/README.md) | class、构造器、继承 supuer、抽象类、封装
 [TooDoList](https://github.com/Trumen1219/React-Study/tree/5-ToDoList/README.md)	| 
 [github用户搜索页面与配置代理](https://github.com/Trumen1219/React-Study/tree/6-github-proxy/README.md)	| 
-[组件实例的三大核心属性1: state 状态](https://github.com/Trumen1219/React-Study/tree/2-Component-oriented-programming/README.md) | 
-[组件实例的三大核心属性2: props]
-[组件三大核心属性3: refs与事件处理]
-[React中的事件处理]
-[收集表单数据]
-[高阶函数与函数的柯里化]
+[react-router5](https://github.com/Trumen1219/React-Study/tree/7-router/README.md) | SPA - 路由机制 - react-router5 - 基本路由 - 嵌套路由 - 传递参数 - 路由跳转
+[react-router6](https://github.com/Trumen1219/React-Study/tree/7-router/README.md) | SPA - 路由机制 - react-router5 - 基本路由 - 嵌套路由 - 传递参数 - 路由跳转
