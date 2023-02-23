@@ -1,13 +1,5 @@
 【React】分别使用axios和Fetch实现github用户搜索页面 - React中配置代理解决跨域问题
 
-YK菌
-lv-5
-2021年10月10日 12:01 ·  阅读 1501
-【React】分别使用axios和Fetch实现github用户搜索页面 - React中配置代理解决跨域问题
-小知识，大挑战！本文正在参与“程序员必备小知识”创作活动。
-
-本文已参与「掘力星计划」，赢取创作大礼包，挑战创作激励金。
-
 今天我们使用React做一个需要发起ajax请求的小demo（github用户搜索页面），我们先使用axios实现，最后再实现一个fetch版本的。这中间我们还会在React中配置代理来解决跨域问题，还会使用消息订阅与发布模式改进我们的代码。
 
 1. 理解
@@ -55,19 +47,24 @@ Github.com/axios/axios
 在package.json中追加如下配置
 
 "proxy":"http://localhost:5000"
-复制代码
+
 说明：
 
 优点：配置简单，前端请求资源时可以不加任何前缀。
 缺点：不能配置多个代理。
 工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）
+
+
 3.2 配置多个代理方法
+
 配置多个代理，不在 package.json 配置
 
 第一步：创建代理配置文件
+
 在src下创建配置文件：src/setupProxy.js
-复制代码
+
 编写setupProxy.js配置具体代理规则：
+
 const proxy = require('http-proxy-middleware')
 
 module.exports = function(app) {
@@ -89,7 +86,7 @@ module.exports = function(app) {
     })
   )
 }
-复制代码
+
 说明：
 
 优点：可以配置多个代理，可以灵活的控制请求是否走代理。
@@ -205,13 +202,15 @@ User/index.css
 .card-text {
   font-size: 85%;
 }
-复制代码
+
 在这里插入图片描述
 
 4.2.2 动态交互实现
+
 由于github访问失败，可以伪造一个服务器返回一些固定的结果，让用户体验更佳 使用express搭建一个服务器
 
 serve.js
+
 const express = require("express")
 const axios = require("axios")
 const app = express()
@@ -310,7 +309,7 @@ app.listen(5000, "localhost", (err) => {
   } 
   else console.log(err);
 })
-复制代码
+
 在这里插入图片描述
 
 src/setupProxy.js
@@ -327,7 +326,7 @@ module.exports = function(app) {
     })
   )
 }
-复制代码
+
 【补充】连续解构赋值
 let obj = {a:{b:{c:1}}}
 console.log(a.b.c) // 1
@@ -337,7 +336,7 @@ console.log(c) // 1
 let obj2 = {a:{b:1}}
 const {a:{b:data}} = obj2 // 重命名
 console.log(data) // 1
-复制代码
+
 App.jsx
 将状态数据定义在App中 操作状态的方法放在App中
 
@@ -358,7 +357,7 @@ export default class App extends Component {
     )
   }
 }
-复制代码
+
 Search/index/jsx
 export default class Search extends Component {
   search = () => {
@@ -386,7 +385,7 @@ export default class Search extends Component {
     )
   }
 }
-复制代码
+
 Users/index.jsx
 export default class Users extends Component {
   render() {
@@ -408,7 +407,7 @@ export default class Users extends Component {
     )
   }
 }
-复制代码
+
 效果展示
 在这里插入图片描述
 
@@ -427,7 +426,7 @@ state = {
   isLoading: false, // 标识是否处于加载中
   err:'' // 请求失败的消息
 }
-复制代码
+ 
 App.jsx
 export default class App extends Component {
   // 初始化状态
@@ -453,7 +452,7 @@ export default class App extends Component {
     )
   }
 }
-复制代码
+ 
 Search/index/jsx
 export default class Search extends Component {
   search = () => {
@@ -492,7 +491,7 @@ export default class Search extends Component {
     )
   }
 }
-复制代码
+ 
 Users/index.jsx
 export default class Users extends Component {
   render() {
@@ -518,27 +517,40 @@ export default class Users extends Component {
     )
   }
 }
-复制代码
+
+
 效果展示
 在这里插入图片描述
 
 5. 消息订阅-发布机制
+
 前面案例中，兄弟组件之间的通信总是要借助父组件才行 现在介绍消息订阅-发布机制来进行兄弟组件之间通信
 
 介绍PubSubJS库
+
 Github.com/mroderick/P…
 
 工具库: PubSubJS
+
 下载: npm install pubsub-js在这里插入图片描述
+
 使用 在【接收】数据的组件中【订阅】消息
-import PubSub from 'pubsub-js' //引入
+
+```javascript
+import PubSub from 'pubsub-js' //引入（包名的命名规范中不能出现字母）
+
 PubSub.subscribe('delete', function(data){ }); // 订阅
+
 PubSub.publish('delete', data) // 发布消息 携带数据
-复制代码
+```
+
 在案例中使用
+
 Users组件【接收】数据，所以Users组件【订阅】消息 Search组件 将数据发送出去，【发布】消息
 
-App.js
+**>>App.js**
+
+```javascript
 export default class App extends Component {
   render() {
     return (
@@ -549,10 +561,12 @@ export default class App extends Component {
     )
   }
 }
-复制代码
-Users/index.jsx
-User组件中用状态数据state，状态定义在这里，在这里订阅消息 Search组件改变状态数据，在这里发布消息
+```
 
+**>>Users/index.jsx**
+
+User组件中用状态数据state，状态定义在这里，在这里订阅消息 Search组件改变状态数据，在这里发布消息
+```javascript
 export default class Users extends Component {
   // 初始化状态
   state = { 
@@ -590,10 +604,13 @@ export default class Users extends Component {
     )
   }
 }
-复制代码
-Search/index.jsx
+```
+
+**>>Search/index.jsx**
+
 Search组件改变状态数据，在这里发布消息【一改变状态，就发布消息】
 
+```javascript
 export default class Search extends Component {
   search = () => {
     const {keyWordElement: {value: keyWord}} = this
@@ -626,20 +643,33 @@ export default class Search extends Component {
     )
   }
 }
-复制代码
+```
+
 6. Fetch
+
 Axios在前端是对xhr的封装 而Fetch是内置的网络请求方法，不需要单独下载安装
 
 6.1 文档
+
 github.github.io/fetch/
+
 【相关博文】传统 Ajax 已死，Fetch 永生
+
+
 6.2 特点
+
 fetch: 原生函数，不再使用XmlHttpRequest对象提交ajax请求
+
 老版本浏览器可能不支持
+
+
 6.3 实例演示
+
 Search/index.jsx
+
 优化前
 
+```javascript
 export default class Search extends Component {
 	search = async()=>{
 		//获取用户的输入(连续解构赋值+重命名)
@@ -655,6 +685,7 @@ export default class Search extends Component {
 			},
 			error => {
 				console.log('联系服务器失败了',error);
+        //返回初始化状态的promise值,不再往下走。
 				return new Promise(()=>{})
 			}
 		).then(
@@ -663,9 +694,10 @@ export default class Search extends Component {
 		)
 	}
 }
-复制代码
+```
 优化后
 
+```javascript
 export default class Search extends Component {
 	search = async()=>{
 		//获取用户的输入(连续解构赋值+重命名)
@@ -685,22 +717,34 @@ export default class Search extends Component {
 		}
 	}
 }
-复制代码
+```
+
+
 7. 总结
+
 设计状态时要考虑全面，例如带有网络请求的组件，要考虑请求失败怎么办。
 
 ES6小知识点：解构赋值+重命名
 
 let obj = {a:{b:1}}
+
 const {a} = obj; //传统解构赋值
+
 const {a:{b}} = obj; //连续解构赋值
+
 const {a:{b:value}} = obj; //连续解构赋值+重命名
-复制代码
+
 消息订阅与发布机制
+
 先订阅，再发布（理解：有一种隔空对话的感觉）
+
 适用于任意组件间通信
+
 要在组件的componentWillUnmount中取消订阅
+
 fetch发送请求（关注分离的设计思想）
+
+```javascript
 try {
 	const response= await fetch(`/api1/search/users2?q=${keyWord}`)
 	const data = await response.json()
@@ -708,3 +752,4 @@ try {
 } catch (error) {
 	console.log('请求出错',error);
 }
+```
