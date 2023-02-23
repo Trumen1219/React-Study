@@ -1,42 +1,62 @@
 【React】SPA - 路由机制 - react-router5 - 基本路由 - 嵌套路由 - 传递参数 - 路由跳转
 
-YK菌
-lv-5
-2021年10月22日 16:52 ·  阅读 926
-【React】SPA - 路由机制 - react-router5 - 基本路由 - 嵌套路由 - 传递参数 - 路由跳转
-小知识，大挑战！本文正在参与“程序员必备小知识”创作活动。
 
-本文已参与「掘力星计划」，赢取创作大礼包，挑战创作激励金。
+# 1. 相关理解
 
-前段时间我们学习了一些React基础知识，还有一些组件化编程的知识，然后做了两个小demo，今天我们来学习React的路由插件react-router-dom的使用。
+## 1.1. SPA的理解
 
-1. 相关理解
-1.1. SPA的理解
 单页Web应用（single page web application，SPA）
-整个应用只有一个完整的页面。
-点击页面中的链接不会刷新页面，只会做页面的局部更新。
-数据都需要通过ajax请求获取, 并在前端异步展现。
-1.2. 路由的理解
-1.2.1 什么是路由?
-一个路由就是一个映射关系(key: value)
-key为路径, value可能是function或component
-1.2.2 路由分类
-1. 后端路由
-理解： value是function, 用来处理客户端提交的请求。
-注册路由： router.get(path, function(req, res))
-工作过程：当node接收到一个请求时, 根据请求路径找到匹配的路由, 调用路由中的函数来处理请求, 返回响应数据
-2. 前端路由
-浏览器端路由，value是component，用于展示页面内容。
-注册路由: <Route path="/test" component={Test}>
-工作过程：当浏览器的path变为/test时, 当前路由组件就会变为Test组件
-主要是通过操作BOM中的history来操作路径
 
-1.3. react-router-dom 的理解
-React的一个插件库。
-专门用来实现一个SPA应用。
-基于React的项目基本都会用到此库。
-2. react-router-dom相关API
-2.1. 内置组件
+整个应用只有一个完整的页面。
+
+点击页面中的链接不会刷新页面，只会做页面的局部更新。
+
+数据都需要通过ajax请求获取, 并在前端异步展现。
+
+## 1.2. 路由的理解
+
+### 1.2.1 什么是路由?
+
+一个路由就是一个映射关系(key: value)
+
+key为路径, value可能是function或component
+
+### 1.2.2 路由分类
+
+
+* 1. 后端路由
+
+  * 理解： value是function, 用来处理客户端提交的请求。
+
+  * 注册路由： router.get(path, function(req, res))
+
+  * 工作过程：当node接收到一个请求时, 根据请求路径找到匹配的路由, 调用路由中的函数来处理请求, 返回响应数据
+
+
+* 2. 前端路由
+
+  * 浏览器端路由，value是component，用于展示页面内容。
+
+  * 注册路由: <Route path="/test" component={Test}>
+
+  * 工作过程：当浏览器的path变为/test时, 当前路由组件就会变为Test组件
+
+  * 主要是通过操作BOM中的history来操作路径
+
+## 1.3. react-router-dom 的理解
+
+* React的一个插件库。
+
+* 专门用来实现一个SPA应用。
+
+* 基于React的项目基本都会用到此库。
+
+
+# 2. react-router-dom相关API
+
+## 2.1. 内置组件
+
+```javascript
 <BrowserRouter>
 <HashRouter>
 <Route>
@@ -44,28 +64,47 @@ React的一个插件库。
 <Link>
 <NavLink>
 <Switch>
-2.2. 其它
+```
+
+## 2.2. 其它
+
 history 对象
+
 match 对象
+
 withRouter 函数
-3. 基本路由使用
-3.1. 效果
+
+
+# 3. 基本路由使用
+
+## 3.1. 效果
+
 在这里插入图片描述
 
-3.2. 准备
+## 3.2. 准备
+
 下载react-router-dom: npm install react-router-dom
+
 在这里插入图片描述
 
 引入bootstrap.css: <link rel="stylesheet" href="/css/bootstrap.css">
-3.3 路由的基本使用
-明确好界面中的导航区、展示区
-导航区的a标签改为Link标签 <Link to="/xxxxx">Demo</Link>
-展示区写Route标签进行路径的匹配 <Route path='/xxxx' component={Demo}/>
-<App>的最外侧包裹了一个<BrowserRouter>或<HashRouter>
-3.4 实现
-Index.js
-这里用一个路由器标签将整个App包起来，保证使用的是同一个路由器这里使用BrowserRouter
 
+## 3.3 路由的基本使用
+
+明确好界面中的导航区、展示区
+
+导航区的a标签改为Link标签 <Link to="/xxxxx">Demo</Link>//to里面尽量都小写
+
+展示区写Route标签进行路径的匹配 <Route path='/xxxx' component={Demo}/>
+
+<App>的最外侧包裹了一个<BrowserRouter>或<HashRouter>
+
+## 3.4 实现
+
+App--->Index.js
+
+这里用一个路由器标签将整个App包起来，保证使用的是同一个路由器这里使用BrowserRouter
+```javascript
 //引入react核心库
 import React from 'react'
 //引入ReactDOM
@@ -81,8 +120,10 @@ ReactDOM.render(
     </BrowserRouter>,
     document.getElementById('root')
 )
-复制代码
+```
+
 App.jsx
+```javascript
 import React, { Component } from 'react'
 import { Link,Route } from 'react-router-dom'
 import Home from './Home'
@@ -123,39 +164,57 @@ export default class App extends Component {
     )
   }
 }
-复制代码
-3.5 路由组件与一般组件的区别
+```
+
+## 3.5 路由组件与一般组件的区别
+
+#号后面的东西不作为数据发送给服务器
+image.png
+
 写法不同
+
 一般组件：<Demo/>
+
 路由组件：<Route path="/demo" component={Demo}/>
+
 存放位置不同
+
 一般组件：components
+
 路由组件：pages
+
 接收到的props不同
+
 一般组件：写组件标签时传递了什么，就能收到什么
+
 路由组件：接收到三个固定的属性
+
 history:
     go: ƒ go(n)
     goBack: ƒ goBack()
     goForward: ƒ goForward()
     push: ƒ push(path, state)
     replace: ƒ replace(path, state)
+
 location:
     pathname: "/about"
     search: ""
     state: undefined
+
 match:
     url: "/about"
     params: {}
     path: "/about"
-复制代码
-3.6 NavLink与封装NavLink
+
+## 3.6 NavLink与封装NavLink
+
 NavLink可以实现路由链接的高亮，通过activeClassName属性指定样式名，默认是"active"
 
 <NavLink activeClassName="demo" className="list-group-item" to="/home">Home</NavLink>
-复制代码
+
 可以自己封装一个NavLink【一般组件】
 
+```javascript
 import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
 
@@ -163,36 +222,43 @@ export default class MyNavLink extends Component {
   render() {
     // console.log(this.props);
     return (
-      <NavLik activeClassName="demo" className="list-group-item" {...this.props} />
+      <NavLink activeClassName="demo" className="list-group-item" {...this.props} />
     )
   }
 }
-复制代码
+```
 标签体内容是特殊的标签属性通过this.props.children可以获取标签体内容
 
 使用
-
+{有图在此}
 <MyNavLink to="/about">About</MyNavLink>
 <MyNavLink to="/home">Home</MyNavLink>
-复制代码
-3.7 Switch的使用
+
+## 3.7 Switch的使用
+
 通常情况下，path和component是一一对应的关系。<Route path='/about' component={About} />
+
 Switch可以提高路由匹配效率(单一匹配)。
+
 这样只要匹配到了第一个就不会再往下匹配了
 
+引入switch
 <Switch>
   <Route path="/about" component={About}/>
   <Route path="/home" component={Home}/> 
   <Route path="/home" component={Test}/>
 </Switch>
-复制代码
+
 3.8 解决多级路径刷新页面样式丢失的问题
+
 Pulbic文件夹就是根目录/
 
 public/index.html 中 引入样式时不写 ./ 写 / （常用）【绝对路径】
 public/index.html 中 引入样式时不写 ./ 写 %PUBLIC_URL% （常用）
 使用HashRouter
+
 3.9 路由的严格匹配与模糊匹配
+
 默认使用的是模糊匹配（简单记：【输入的路径】必须包含要【匹配的路径】，且顺序要一致）
 开启严格匹配：<Route exact={true} path="/about" component={About}/>简写<Route exact path="/about" component={About}/>
 严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由
