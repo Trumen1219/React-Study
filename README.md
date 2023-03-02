@@ -12,4 +12,4 @@ A few notes of knowledge about React!🥳
 [TooDoList](https://github.com/Trumen1219/React-Study/tree/5-ToDoList/README.md)	| 
 [github用户搜索页面与配置代理](https://github.com/Trumen1219/React-Study/tree/6-github-proxy/README.md)	| 
 [react-router5](https://github.com/Trumen1219/React-Study/tree/7-router/README.md) | SPA - 路由机制 - react-router5 - 基本路由 - 嵌套路由 - 传递参数 - 路由跳转
-[react-router6](https://github.com/Trumen1219/React-Study/tree/7-router/README.md) | SPA - 路由机制 - react-router5 - 基本路由 - 嵌套路由 - 传递参数 - 路由跳转
+[react-router6](https://github.com/Trumen1219/React-Study/tree/7-router/README.md) | 
