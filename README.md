@@ -1,39 +1,54 @@
-【React】分别使用axios和Fetch实现github用户搜索页面 - React中配置代理解决跨域问题
+# 用户搜索页面与配置代理
 
-今天我们使用React做一个需要发起ajax请求的小demo（github用户搜索页面），我们先使用axios实现，最后再实现一个fetch版本的。这中间我们还会在React中配置代理来解决跨域问题，还会使用消息订阅与发布模式改进我们的代码。
+今天我们使用React做一个需要发起ajax请求的小demo（github用户搜索页面），我们先使用axios实现，最后再实现一个fetch版本的。
 
-1. 理解
+这中间我们还会在React中配置代理来解决跨域问题，还会使用消息订阅与发布模式改进我们的代码。
+
+## 1. 理解
 之前也学习过ajax和axios，可以先看看这两个笔记复习一下ajax
 
-【Ajax】HTTP相关问题-GET-POST-XHR使用-jQuery中的ajax-跨域-同源-jsonp-cors
+[【Ajax】HTTP相关问题-GET-POST-XHR使用-jQuery中的ajax-跨域-同源-jsonp-cors](https://juejin.cn/post/6999604180432191519)
 
-【Axios】使用json-server 搭建REST API - 使用axios - 自定义axios - 取消请求 - 拦截器
+[【Axios】使用json-server 搭建REST API - 使用axios - 自定义axios - 取消请求 - 拦截器](https://juejin.cn/post/7015487317582299144)
 
-React的一下基础知识笔记可以看这个专栏 juejin.cn/column/7015…
 
-1.1. 前置说明
-React本身只关注于界面, 并不包含发送ajax请求的代码
+### 1.1. 前置说明
+
+React本身只关注于界面, 并不包含发送**ajax**请求的代码
+
 前端应用需要通过ajax请求与后台进行交互(json数据)
+
 React应用中需要集成第三方ajax库(或自己封装)
-1.2. 常用的ajax请求库
+
+### 1.2. 常用的ajax请求库
+
 jQuery: 比较重, 如果需要另外引入不建议使用
+
 axios: 轻量级, 建议使用
-封装XmlHttpRequest对象的ajax
-promise风格
-可以用在浏览器端和node服务器端
-2. axios
-安装npm install axios
 
-在这里插入图片描述
+    1.封装XmlHttpRequest对象的ajax
 
-2.1. 文档
+    2.promise风格
+
+    3.可以用在浏览器端和node服务器端
+
+## 2. axios
+
+安装**npm install axios**
+
+### 2.1. 文档
+
 Github.com/axios/axios
 
-2.2. 相关API
-更多细节可以参考这个笔记的内容 【axios】使用json-server 搭建REST API - 使用axios - 自定义axios - 取消请求 - 拦截器
+### 2.2. 相关API
 
-3. React中配置代理解决跨域问题
-3.1 配置代理方法
+更多细节可以参考这个笔记的内容 [【axios】使用json-server 搭建REST API - 使用axios - 自定义axios - 取消请求 - 拦截器](https://blog.csdn.net/weixin_44972008/article/details/114368528)
+
+
+## 3. React中配置代理解决跨域问题
+
+### 3.1 配置代理方法
+
 解决跨域问题，在React开启中间代理
 
 在项目中的package.json中，最后加上一行"proxy": "http://loaclhost:5000" 写到端口号
@@ -46,25 +61,29 @@ Github.com/axios/axios
 
 在package.json中追加如下配置
 
+```javascript
 "proxy":"http://localhost:5000"
+```
 
 说明：
 
-优点：配置简单，前端请求资源时可以不加任何前缀。
-缺点：不能配置多个代理。
-工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）
+    优点：配置简单，前端请求资源时可以不加任何前缀。
+
+    配置多个代理。
+
+    工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）
 
 
-3.2 配置多个代理方法
+### 3.2 配置多个代理方法
 
 配置多个代理，不在 package.json 配置
 
-第一步：创建代理配置文件
+    第一步：创建代理配置文件
 
 在src下创建配置文件：src/setupProxy.js
 
-编写setupProxy.js配置具体代理规则：
-
+    编写setupProxy.js配置具体代理规则：
+```javascript
 const proxy = require('http-proxy-middleware')
 
 module.exports = function(app) {
@@ -86,22 +105,31 @@ module.exports = function(app) {
     })
   )
 }
+```
 
 说明：
+1.优点：可以配置多个代理，可以灵活的控制请求是否走代理。
 
-优点：可以配置多个代理，可以灵活的控制请求是否走代理。
-缺点：配置繁琐，前端请求资源时必须加前缀。
-4. 案例—github用户搜索
-之前用Vue也做过这个案例，可以对比着学习 【Vue】高级系列（七）Vue-cli配置代理 - Ajax实战-demo3-GitHub用户查询-axios-pubsub
+2.缺点：配置繁琐，前端请求资源时必须加前缀。
 
-4.1 效果
-请求地址: api.github.com/search/user…在这里插入图片描述
+## 4. 案例—github用户搜索
 
-4.2 React 实现
-4.2.1 静态页面拆分实现
-在这里插入图片描述
+之前用Vue也做过这个案例，可以对比着学习 [【Vue】高级系列（七）Vue-cli配置代理 - Ajax实战-demo3-GitHub用户查询-axios-pubsub](https://blog.csdn.net/weixin_44972008/article/details/113992327)
 
-App.jsx
+### 4.1 效果
+
+请求地址: https://api.github.com/search/users?q=xxxxxx
+
+https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e17bce649e774e089e6b423830c2a28e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp
+
+### 4.2 React 实现
+
+#### 4.2.1 静态页面拆分实现
+
+
+**>>App.jsx**
+
+```javascript
 import React, { Component } from 'react'
 import Search from './Search'
 import Users from './Users'
@@ -116,8 +144,11 @@ export default class App extends Component {
     )
   }
 }
-复制代码
-Search/index.js
+```
+
+**>>Search/index.js**
+
+```javascript
 import React, { Component } from 'react'
 
 export default class Search extends Component {
@@ -133,8 +164,10 @@ export default class Search extends Component {
     )
   }
 }
-复制代码
-User/index.jsx
+```
+**>>User/index.jsx**
+
+```javascript
 import React, { Component } from 'react'
 import './index.css'
 
@@ -176,8 +209,10 @@ export default class Users extends Component {
     )
   }
 }
-复制代码
-User/index.css
+```
+
+**>>User/index.css**
+```css
 .album {
   min-height: 50rem; /* Can be removed; just added for demo purposes */
   padding-top: 3rem;
@@ -202,19 +237,20 @@ User/index.css
 .card-text {
   font-size: 85%;
 }
+```
 
-在这里插入图片描述
 
-4.2.2 动态交互实现
+
+#### 4.2.2 动态交互实现
 
 由于github访问失败，可以伪造一个服务器返回一些固定的结果，让用户体验更佳 使用express搭建一个服务器
 
-serve.js
+**>>serve.js**
 
+```javascript
 const express = require("express")
 const axios = require("axios")
 const app = express()
-
 
 /*
   请求地址： http://localhost:3000/search/users?q=aa
@@ -309,12 +345,15 @@ app.listen(5000, "localhost", (err) => {
   } 
   else console.log(err);
 })
+```
 
 在这里插入图片描述
 
-src/setupProxy.js
+**src/setupProxy.js**
+
 设置代理服务器解决跨域问题src/setupProxy.js
 
+```javascript
 const proxy = require('http-proxy-middleware')
 
 module.exports = function(app) {
@@ -327,7 +366,7 @@ module.exports = function(app) {
   )
 }
 
-【补充】连续解构赋值
+// 【补充】连续解构赋值
 let obj = {a:{b:{c:1}}}
 console.log(a.b.c) // 1
 const {a:{b:{c}}} = obj
@@ -336,10 +375,12 @@ console.log(c) // 1
 let obj2 = {a:{b:1}}
 const {a:{b:data}} = obj2 // 重命名
 console.log(data) // 1
+```
 
-App.jsx
+**>>App.jsx**
+
 将状态数据定义在App中 操作状态的方法放在App中
-
+```javascript
 export default class App extends Component {
   state = {
     users: []
@@ -357,8 +398,11 @@ export default class App extends Component {
     )
   }
 }
+```
 
-Search/index/jsx
+**>>Search/index/jsx**
+
+```javascript
 export default class Search extends Component {
   search = () => {
     // 获取用户输入(连续解构赋值+重命名)
@@ -385,8 +429,11 @@ export default class Search extends Component {
     )
   }
 }
+```
 
-Users/index.jsx
+**>>Users/index.jsx**
+
+```javascript
 export default class Users extends Component {
   render() {
     return (
@@ -407,18 +454,24 @@ export default class Users extends Component {
     )
   }
 }
-
+```
 效果展示
+
 在这里插入图片描述
 
-4.2.3 优化用户体验
+#### 4.2.3 优化用户体验
+
 在Users组件中，应该不止只有用户列表页面，应该还有
 
 欢迎使用界面【第一次打开页面】
+
 搜索加载页面【点击按钮发送请求和接收到响应之间显示】
+
 搜索失败页面【请求失败显示】
+
 有四种不同的显示，那就需要不同的状态state来控制
 
+```javascript
 // 初始化状态
 state = { 
   users: [], // users初始值
@@ -426,8 +479,10 @@ state = {
   isLoading: false, // 标识是否处于加载中
   err:'' // 请求失败的消息
 }
- 
-App.jsx
+```
+
+**>>App.jsx**
+```javascript
 export default class App extends Component {
   // 初始化状态
   state = { 
@@ -452,8 +507,11 @@ export default class App extends Component {
     )
   }
 }
- 
-Search/index/jsx
+```
+
+**>>Search/index/jsx**
+
+```javascript
 export default class Search extends Component {
   search = () => {
     // 获取用户输入(连续解构赋值+重命名)
@@ -491,8 +549,11 @@ export default class Search extends Component {
     )
   }
 }
- 
-Users/index.jsx
+```
+
+**>>Users/index.jsx**
+
+```javascript
 export default class Users extends Component {
   render() {
     const {users, isFirst, isLoading, err} = this.props
@@ -517,12 +578,12 @@ export default class Users extends Component {
     )
   }
 }
-
+```
 
 效果展示
 在这里插入图片描述
 
-5. 消息订阅-发布机制
+## 5. 消息订阅-发布机制
 
 前面案例中，兄弟组件之间的通信总是要借助父组件才行 现在介绍消息订阅-发布机制来进行兄弟组件之间通信
 
