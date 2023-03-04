@@ -6,7 +6,7 @@ export default class Search extends Component {
       const {keyWordElement: {value: keyWord}} = this
       // console.log(keyWord)
       // 发送网络请求
-      axios.get(`/api1/search/users?q=${keyWord}`).then(
+      axios.get(`/api1/search/users2?q=${keyWord}`).then(
         response => {
           console.log('成功')
           this.props.saveUsers(response.data.items)

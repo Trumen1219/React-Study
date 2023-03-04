@@ -463,11 +463,11 @@ export default class Users extends Component {
 
 在Users组件中，应该不止只有用户列表页面，应该还有
 
-欢迎使用界面【第一次打开页面】
+    1.欢迎使用界面【第一次打开页面】
 
-搜索加载页面【点击按钮发送请求和接收到响应之间显示】
+    2.搜索加载页面【点击按钮发送请求和接收到响应之间显示】
 
-搜索失败页面【请求失败显示】
+    3.搜索失败页面【请求失败显示】
 
 有四种不同的显示，那就需要不同的状态state来控制
 
@@ -589,11 +589,11 @@ export default class Users extends Component {
 
 介绍PubSubJS库
 
-Github.com/mroderick/P…
+[PubSubJS](https://github.com/mroderick/PubSubJS)
 
-工具库: PubSubJS
+1.工具库: PubSubJS
 
-下载: npm install pubsub-js在这里插入图片描述
+2.下载: **npm install pubsub-js**在这里插入图片描述
 
 使用 在【接收】数据的组件中【订阅】消息
 
