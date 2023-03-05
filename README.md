@@ -231,11 +231,14 @@ match:
 ```
 
 
+
 ## 3.6 NavLink与封装NavLink
 
 NavLink可以实现路由链接的高亮，通过activeClassName属性指定样式名，默认是"active"
 
+```javascript
 <NavLink activeClassName="demo" className="list-group-item" to="/home">Home</NavLink>
+```
 
 可以自己封装一个NavLink【一般组件】
 
@@ -255,26 +258,33 @@ export default class MyNavLink extends Component {
 标签体内容是特殊的标签属性通过this.props.children可以获取标签体内容
 
 使用
-{有图在此}
+```javascript
 <MyNavLink to="/about">About</MyNavLink>
+
 <MyNavLink to="/home">Home</MyNavLink>
+```
+
+
 
 ## 3.7 Switch的使用
 
-通常情况下，path和component是一一对应的关系。<Route path='/about' component={About} />
+* 通常情况下，path和component是一一对应的关系。```<Route path='/about' component={About} />```
 
-Switch可以提高路由匹配效率(单一匹配)。
+* **Switch**可以提高路由匹配效率(单一匹配)。
 
 这样只要匹配到了第一个就不会再往下匹配了
 
 引入switch
+```javascript
 <Switch>
   <Route path="/about" component={About}/>
   <Route path="/home" component={Home}/> 
   <Route path="/home" component={Test}/>
 </Switch>
+```
 
-3.8 解决多级路径刷新页面样式丢失的问题
+
+## 3.8 解决多级路径刷新页面样式丢失的问题
 
 Pulbic文件夹就是根目录/
 
