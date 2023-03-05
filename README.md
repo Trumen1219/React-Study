@@ -91,15 +91,18 @@ withRouter 函数
 
 1.明确好界面中的导航区、展示区
 
-2.导航区的a标签改为Link标签 ``` <Link to="/xxxxx">Demo</Link>```//to里面尽量都小写
+2.导航区的a标签改为Link标签 ```<Link to="/xxxxx">Demo</Link>```//to里面尽量都小写
 
-3.展示区写Route标签进行路径的匹配 <Route path='/xxxx' component={Demo}/>
+3.展示区写Route标签进行路径的匹配 ```<Route path='/xxxx' component={Demo}/>```
 
-4.<App>的最外侧包裹了一个<BrowserRouter>或<HashRouter>
+4.```<App>```的最外侧包裹了一个```<BrowserRouter>```或```<HashRouter>```
+
+(BrowserRouter 将会监听 URL 的变化，当 URL 变更时，它将使浏览器显示相应的页面；所以要在最外侧包裹一个)
+
 
 ## 3.4 实现
 
-**>Index.js**
+**>>Index.js**
 
 这里用一个路由器标签将整个App包起来，保证使用的是同一个路由器这里使用BrowserRouter
 ```javascript
