@@ -174,7 +174,11 @@ export default class App extends Component {
 
 一、写法不同
 
-* 一般组件：<Demo/>
+* 一般组件：
+
+```javascript
+<Demo/>
+```
 
 * 路由组件：<Route path="/demo" component={Demo}/>
 
