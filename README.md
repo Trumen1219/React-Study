@@ -180,19 +180,23 @@ export default class App extends Component {
 <Demo/>
 ```
 
-* 路由组件：<Route path="/demo" component={Demo}/>
+* 路由组件：
+
+```javascript
+<Route path="/demo" component={Demo}/>
+```
 
 二、存放位置不同
 
-一般组件：components
+* 一般组件：components
 
-路由组件：pages
+* 路由组件：pages
 
 三、接收到的props不同
 
-一般组件：写组件标签时传递了什么，就能收到什么
+* 一般组件：写组件标签时传递了什么，就能收到什么
 
-路由组件：接收到三个固定的属性
+* 路由组件：接收到三个固定的属性
 
 history:
     go: ƒ go(n)
