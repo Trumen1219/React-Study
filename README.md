@@ -201,33 +201,33 @@ export default class App extends Component {
 ```javascript
 history: 
 
-* go: ƒ go(n)
+  go: ƒ go(n)
 
-* goBack: ƒ goBack() 
+  goBack: ƒ goBack() 
 
-* goForward: ƒ goForward() 
+  goForward: ƒ goForward() 
 
-* push: ƒ push(path, state) 
+  push: ƒ push(path, state) 
 
-* replace: ƒ replace(path, state) 
+  replace: ƒ replace(path, state) 
 
 
 location:
 
-* pathname: "/about"
+  pathname: "/about"
 
-* search: ""
+  search: ""
 
-* state: undefined
+  state: undefined
 
 
 match:
 
-* url: "/about"
+  url: "/about"
 
-* params: {}
+  params: {}
 
-* path: "/about"
+  path: "/about"
 ```
 
 
