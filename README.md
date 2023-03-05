@@ -198,7 +198,9 @@ export default class App extends Component {
 
 * 路由组件：接收到三个固定的属性
 
+```javascript
 history: 
+
 * go: ƒ go(n)
 
 * goBack: ƒ goBack() 
@@ -226,6 +228,8 @@ match:
 * params: {}
 
 * path: "/about"
+```
+
 
 ## 3.6 NavLink与封装NavLink
 
