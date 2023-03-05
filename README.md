@@ -283,40 +283,138 @@ export default class MyNavLink extends Component {
 </Switch>
 ```
 
+# 例子：
+```javascript
+import React,{Component} from 'react';
+import {HashRouter as Router,Route,Link,Switch } from 'react-router-dom';
+import Main from './Main';
+import About from './About';
+import Topic from './Topic';
+class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {  };
+    }
+    render() {
+        return (
+            <Router>
+                <div>
+                <ul>
+                    <li>
+                        <Link to="/">main</Link>
+                    </li>
+                    <li>
+                        <Link to="/about">about</Link>
+                    </li>
+                    <li>
+                        <Link to="/topic">topic</Link>
+                    </li>
+                </ul>
+                <hr />
+                {/* {this.props.children} */}
+                </div>
+                {/* Switch匹配到第一个路由就不会继续匹配了,
+                如果不加Route 里不加 exact，那么凡是Link里面 to 的路径包含了/，
+                那么就会被匹配到，于是Switch就不继续匹配下去
+                
+                */}
+                <Switch>
+                    <Route  exact path="/" component={Main}></Route>
+                    <Route  path="/about" component={About}></Route>
+                    <Route  path="/topic" component={Topic}></Route>
+                </Switch>
+            </Router>
+            
+        );
+    }
+}
+
+export default Home;
+```
 
 ## 3.8 解决多级路径刷新页面样式丢失的问题
 
-Pulbic文件夹就是根目录/
+【Pulbic文件夹就是根目录/】
 
-public/index.html 中 引入样式时不写 ./ 写 / （常用）【绝对路径】
+《解决方案》
+
+* public/index.html 中 引入样式时不写 ./ 写 / （常用）【绝对路径】
+
+* public/index.html 中 引入样式时不写 ./ 写 %PUBLIC_URL% （常用）
+
+* 使用HashRouter
+
+问题原因：多级路径下，加载样式时，使用相对路径，在刷新时将多级路由也考虑在内
+
+// 如下，样式路径 './' 导致加载资源时，需要参考当前路径，因此多级路由会影响资源的加载
+ <link rel="stylesheet" href="./test.css" />
+1
+2
+解决的三种方法：
+使用 绝对路径
+public/index.html 中 引入样式时不写 ./ 写 / （常用）
+ // 加载 根目录下的 test.css ，与当前路由无关
+ <link rel="stylesheet" href="/test.css" />
+1
+2
+使用 %PUBLIC_URL%（此方法只有在react中有效）
 public/index.html 中 引入样式时不写 ./ 写 %PUBLIC_URL% （常用）
-使用HashRouter
+ // 加载 public 文件夹下的 test.css ，与当前路由无关
+ <link rel="stylesheet" href="%PUBLIC_URL%/test.css" />
+1
+2
+原理：使用绝对路径，即固定了是public下的test.css，并不会被变动。
 
-3.9 路由的严格匹配与模糊匹配
+使用HashRouter
+ReactDOM.render(
+    <HashRouter>
+        <App />
+    </HashRouter>
+    , document.getElementById('root'))
+1
+2
+3
+4
+5
+原理：因为 hash 是不会改变路径的，也不会包含在请求URL中，因此不会影响相对路径
+
+总结：
+样式丢失的原因是，加载资源时使用相对路径，而相对路径又会参考当前路由路径，因此导致加载不到资源，解决办法则是使用绝对路径等，让其加载资源时不再参考路由路径。
+
+## 3.9 路由的严格匹配与模糊匹配
 
 默认使用的是模糊匹配（简单记：【输入的路径】必须包含要【匹配的路径】，且顺序要一致）
 开启严格匹配：<Route exact={true} path="/about" component={About}/>简写<Route exact path="/about" component={About}/>
 严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由
-3.10 Redirect的使用【重定向】
+
+## 3.10 Redirect的使用【重定向】
 一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由
 
 具体编码：
-
+```javascript
 <Switch>
     <Route path="/about" component={About}/>
     <Route path="/home" component={Home}/>
     <Redirect to="/about"/>
 </Switch>
-复制代码
-4. 嵌套路由使用
-4.1 效果
+```
+
+# 4. 嵌套路由使用
+
+## 4.1 效果
+
 在这里插入图片描述
 
-4.2 注意
+## 4.2 注意
 注册子路由时要写上父路由的path值
+
 路由的匹配是按照注册路由的顺序进行的
-4.3 实现
-Home/index.jsx
+
+## 4.3 实现
+
+**>>Home/index.jsx**
+
+```javascript
 import React, { Component } from 'react'
 import { Route, NavLink,Redirect,Switch } from 'react-router-dom'
 import News from './News'
@@ -346,17 +444,22 @@ export default class Home extends Component {
     )
   }
 }
-复制代码
-5. 向路由组件传递参数数据
-5.1 效果
+```
+
+# 5. 向路由组件传递参数数据
+
+## 5.1 效果
 在这里插入图片描述
 
-5.2 具体方法
+## 5.2 具体方法
+
 方法1. params参数
 路由链接(携带参数)：<Link to='/demo/test/tom/18'}>详情</Link>
 注册路由(声明接收)：<Route path="/demo/test/:name/:age" component={Test}/>
 接收参数：this.props.match.params
-Message/index.jsx
+
+**>>Message/index.jsx**
+```javascript
 import React, { Component } from 'react'
 import { Link, Route } from 'react-router-dom';
 import Detail from './Detail';
@@ -392,10 +495,12 @@ export default class Message extends Component {
     )
   }
 }
-复制代码
-Detail/index.jsx
-在这里插入图片描述
+```
 
+**>>Detail/index.jsx**
+
+在这里插入图片描述
+```javascript
 import React, { Component } from 'react'
 
 export default class Detail extends Component {
@@ -424,7 +529,8 @@ export default class Detail extends Component {
     )
   }
 }
-复制代码
+```
+
 方法2. search参数
 路由链接(携带参数)：<Link to='/demo/test?name=tom&age=18'}>详情</Link>
 注册路由(无需声明，正常注册即可)：<Route path="/demo/test" component={Test}/>
@@ -435,14 +541,16 @@ let obj = {name:'tom', age:18}
 console.log(qs.stringify(obj)) // name=tom&age=18
 let str = 'carName=Benz&price=199'
 console.log(qs.parse(str)) // {carName: 'Benz', price: 199}
-复制代码
+
+
 方法3. state参数
 路由链接(携带参数)：<Link to={{ pathname:'/demo/test', state:{name:'tom',age:18} }}>详情</Link>
 注册路由(无需声明，正常注册即可)：<Route path="/demo/test" component={Test}/>
 接收参数：this.props.location.state
 备注：刷新也可以保留住参数【history对象记录着在】
 代码
-Message/index.jsx
+**>>Message/index.jsx**
+```javascript
 export default class Message extends Component {
   render() {
     const {messageArr} = this.state
@@ -481,7 +589,7 @@ export default class Message extends Component {
     )
   }
 }
-复制代码
+```
 Detail/index.jsx
 import React, { Component } from 'react'
 // import qs from 'querystring'
