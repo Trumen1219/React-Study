@@ -170,22 +170,21 @@ export default class App extends Component {
 
 ## 3.5 路由组件与一般组件的区别
 
-#号后面的东西不作为数据发送给服务器
-image.png
+```#号后面的东西不作为数据发送给服务器```
 
-写法不同
+一、写法不同
 
-一般组件：<Demo/>
+* 一般组件：<Demo/>
 
-路由组件：<Route path="/demo" component={Demo}/>
+* 路由组件：<Route path="/demo" component={Demo}/>
 
-存放位置不同
+二、存放位置不同
 
 一般组件：components
 
 路由组件：pages
 
-接收到的props不同
+三、接收到的props不同
 
 一般组件：写组件标签时传递了什么，就能收到什么
 
