@@ -198,12 +198,12 @@ export default class App extends Component {
 
 * 路由组件：接收到三个固定的属性
 
-history: 
-    go: ƒ go(n) 
-    goBack: ƒ goBack() 
-    goForward: ƒ goForward() 
-    push: ƒ push(path, state) 
-    replace: ƒ replace(path, state) 
+history: <br/>
+    go: ƒ go(n)<br/>
+    goBack: ƒ goBack() <br/>
+    goForward: ƒ goForward() <br/>
+    push: ƒ push(path, state) <br/>
+    replace: ƒ replace(path, state) <br/>
 
 location:
     pathname: "/about"
