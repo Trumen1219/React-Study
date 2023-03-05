@@ -85,23 +85,21 @@ withRouter 函数
 
 下载react-router-dom: npm install react-router-dom
 
-在这里插入图片描述
-
 引入bootstrap.css: <link rel="stylesheet" href="/css/bootstrap.css">
 
 ## 3.3 路由的基本使用
 
-明确好界面中的导航区、展示区
+1.明确好界面中的导航区、展示区
 
-导航区的a标签改为Link标签 <Link to="/xxxxx">Demo</Link>//to里面尽量都小写
+2.导航区的a标签改为Link标签 <Link to="/xxxxx">Demo</Link>//to里面尽量都小写
 
-展示区写Route标签进行路径的匹配 <Route path='/xxxx' component={Demo}/>
+3.展示区写Route标签进行路径的匹配 <Route path='/xxxx' component={Demo}/>
 
-<App>的最外侧包裹了一个<BrowserRouter>或<HashRouter>
+4.<App>的最外侧包裹了一个<BrowserRouter>或<HashRouter>
 
 ## 3.4 实现
 
-App--->Index.js
+**>Index.js**
 
 这里用一个路由器标签将整个App包起来，保证使用的是同一个路由器这里使用BrowserRouter
 ```javascript
@@ -122,7 +120,8 @@ ReactDOM.render(
 )
 ```
 
-App.jsx
+**>>App.jsx**
+
 ```javascript
 import React, { Component } from 'react'
 import { Link,Route } from 'react-router-dom'
