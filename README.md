@@ -91,7 +91,7 @@ withRouter 函数
 
 1.明确好界面中的导航区、展示区
 
-2.导航区的a标签改为Link标签 ```javascript <Link to="/xxxxx">Demo</Link>```//to里面尽量都小写
+2.导航区的a标签改为Link标签 ``` <Link to="/xxxxx">Demo</Link>```//to里面尽量都小写
 
 3.展示区写Route标签进行路径的匹配 <Route path='/xxxx' component={Demo}/>
 
